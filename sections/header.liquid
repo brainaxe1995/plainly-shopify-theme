@@ -1,17 +1,29 @@
+{%- assign buy_url = section.settings.product_url | default: '/pages/buy' -%}
+{%- assign read_url = section.settings.read_url -%}
+{%- if read_url == blank -%}
+  {%- if blogs.news.articles_count > 0 -%}
+    {%- assign read_url = blogs.news.url -%}
+  {%- else -%}
+    {%- assign read_url = '/blogs/news' -%}
+  {%- endif -%}
+{%- endif -%}
 <header class="header-sticky">
   <div class="page-grid flex h-16 items-center justify-between gap-4">
     <a href="{{ routes.root_url }}" class="font-display text-[22px] tracking-[0.01em]">
       {{ section.settings.brand_name | default: shop.name }}
     </a>
     <nav aria-label="Main" class="flex items-center gap-6">
-      <a href="{{ section.settings.read_url | default: '/blogs/read' }}" class="hidden text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground sm:inline">
+      <a href="{{ read_url }}" class="hidden text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground sm:inline">
         Read this first
       </a>
-      <a href="{{ section.settings.product_url | default: '/pages/buy' }}" class="text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground">
+      <a href="{{ buy_url }}" class="text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground">
         What we send
       </a>
-      <a href="{{ section.settings.product_url | default: '/pages/buy' }}" class="hidden rounded-lg bg-forest px-4 py-2 text-[13px] font-semibold tracking-[0.04em] text-forest-foreground uppercase hover:bg-moss md:inline">
+      <a href="{{ buy_url }}" class="hidden rounded-lg bg-forest px-4 py-2 text-[13px] font-semibold tracking-[0.04em] text-forest-foreground uppercase hover:bg-moss md:inline">
         Start &middot; {% render 'price', cents: settings.starter_price_cents %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="relative text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground">
+        Bag{% if cart.item_count > 0 %} · {{ cart.item_count }}{% endif %}
       </a>
     </nav>
   </div>
@@ -22,8 +34,8 @@
   "name": "Header",
   "settings": [
     { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Plainly" },
-    { "type": "url", "id": "read_url", "label": "Read URL" },
-    { "type": "url", "id": "product_url", "label": "Product URL" }
+    { "type": "url", "id": "read_url", "label": "Read URL (default: /blogs/news)" },
+    { "type": "url", "id": "product_url", "label": "Product URL (default: /pages/buy)" }
   ]
 }
 {% endschema %}
