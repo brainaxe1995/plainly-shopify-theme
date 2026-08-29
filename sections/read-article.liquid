@@ -1,0 +1,134 @@
+{%- assign starter = settings.starter_price_cents | money -%}
+{%- assign buy_url = section.settings.buy_url | default: '/pages/buy' -%}
+{%- assign img1 = section.settings.image_1 | default: nil -%}
+{%- assign img1_url = 'ad-429.jpg' | asset_url -%}
+{%- if img1 -%}{%- assign img1_url = img1 | image_url: width: 1200 -%}{%- endif -%}
+{%- assign img2 = section.settings.image_2 | default: nil -%}
+{%- assign img2_url = 'ad-432.jpg' | asset_url -%}
+{%- if img2 -%}{%- assign img2_url = img2 | image_url: width: 1200 -%}{%- endif -%}
+<article>
+  <section class="page-grid section-y">
+    <div class="text-column">
+      <p class="eyebrow">Nobody says this out loud, so we will</p>
+      <h1 class="display mt-5">
+        6 reasons you are still watching porn every night.
+        <span class="text-forest">#6 is why you have been stuck for years</span>
+      </h1>
+      <p class="mt-3 text-[14px] font-bold tracking-[0.08em] text-muted-foreground uppercase">A short read &middot; about 3 minutes</p>
+
+      <div class="mt-8 space-y-4">
+        <p>You have tried to stop before. Maybe ten times. Maybe fifty. It held for a few days, then one bad night wiped it all out, like you never decided anything at all.</p>
+        <p>Here is what nobody told me for a whole year: it was never willpower. Six things are stacked against you every single night, and once you see them you cannot unsee them. #6 is the trap that has made every &ldquo;last time&rdquo; a lie for years. That one is the whole point of this page.</p>
+      </div>
+
+      <img src="{{ img1_url }}" alt="Photo · the moment you know" class="mt-10 w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+
+      <div class="mt-8">
+        <a href="{{ buy_url }}" class="btn-base btn-ink">Skip the read, see what we send</a>
+        <p class="mt-3 text-[14px] font-bold tracking-[0.04em] text-muted-foreground uppercase">
+          From {{ starter }} &middot; plain box &middot; 60 nights or your money back
+        </p>
+      </div>
+
+      <div class="rule-hard mt-10 pt-6">
+        {% assign with_note = false %}
+        {% render 'advisor-card', with_note: with_note %}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-border bg-paper">
+    <div class="page-grid section-y">
+      <div class="text-column">
+        {% for block in section.blocks %}
+          <div class="border-b border-border py-10 first:pt-0 last:border-b-0 last:pb-0">
+            <p class="numeral text-forest">{{ block.settings.n }}</p>
+            <h2 class="subheading mt-4">{{ block.settings.title }}</h2>
+            <p class="mt-3 text-muted-foreground">{{ block.settings.body }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="band-mint">
+    <div class="page-grid section-y">
+      <blockquote class="text-column">
+        <p class="display-sm">Read those six again. Every one of them is about the situation at night. Not one is about the kind of man you are.</p>
+        <p class="mt-6 text-muted-foreground">That is the one useful thing we learned in the year we lost to this. You do not have to become a stronger man by Monday. You have to change one hour of one night. That is a much smaller job, and it is the one that actually works.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="page-grid section-y">
+    <div class="text-column">
+      <p class="eyebrow">What we did about it</p>
+      <h2 class="heading mt-4">One tablet a day. That is what our specialist recommends</h2>
+      <div class="mt-6 space-y-4">
+        <p>There is no course, no app and no homework. Our specialist put together one daily tablet from simple ingredients, and that is the only thing we send you.</p>
+        <p>It is not a medicine and it does not treat anything. We are not going to tell you what it will do to you. The full ingredient list is on the product page, before you pay, so you can read it yourself.</p>
+        <p>Every box is checked and packed by hand, with nothing written on the outside. That is the whole offer.</p>
+      </div>
+      <div class="rule-hard mt-10 pt-8">
+        {% render 'advisor-card' %}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-grid section-y">
+    <div class="buying-column card-plain p-6 md:p-10">
+      <img src="{{ img2_url }}" alt="Photo · the pack, dark background" class="mb-6 w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+      <p class="eyebrow">What I send</p>
+      <p class="numeral mt-3">{{ starter }}</p>
+      <p class="mt-3 text-muted-foreground">One week to start, then you decide. Your daily tablets, exactly what our specialist recommends. Plain box, nothing written on the outside. Bigger boxes cost less per day, and you cancel in one click.</p>
+      <a href="{{ buy_url }}" class="btn-base btn-ink mt-8 w-full">Start tonight for {{ starter }}</a>
+      <p class="mt-3 text-center text-[14px] text-muted-foreground">60 nights or your money back. Prices, ingredients and everything else are on that page before you pay.</p>
+    </div>
+  </section>
+</article>
+
+{% render 'support-note' %}
+
+{% comment %} Sticky buy bar {% endcomment %}
+<div class="h-28" aria-hidden="true"></div>
+<div data-buy-bar class="buy-bar" aria-hidden="true">
+  <div class="page-grid flex items-center justify-between gap-4 py-3">
+    <div class="min-w-0">
+      <p class="truncate text-[13px] font-bold tracking-[0.06em] text-muted-foreground uppercase">Start tonight</p>
+      <p class="text-[20px] leading-tight font-semibold tabular-nums">from {{ starter }}</p>
+    </div>
+    <a href="{{ buy_url }}" class="btn-base btn-ink shrink-0">See what I send</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Read article",
+  "settings": [
+    { "type": "url", "id": "buy_url", "label": "Buy URL (default: /pages/buy)" },
+    { "type": "image_picker", "id": "image_1", "label": "Top photo (falls back to ad-429.jpg)" },
+    { "type": "image_picker", "id": "image_2", "label": "Pack photo (falls back to ad-432.jpg)" }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason",
+      "settings": [
+        { "type": "text", "id": "n", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "reason", "settings": { "n": "01", "title": "You do not quit at night. You quit at 10am, then forget you ever decided", "body": "At 10 in the morning you hate yourself and swear it is over. Then 1am comes, you are tired and bored and alone, and that guy at 10am is dead to you. You are not weak. Two different men live in your head, and only one of them gets a vote when it matters." } },
+      { "type": "reason", "settings": { "n": "02", "title": "It is free, it is silent, and it is already in your hand", "body": "Every other bad habit costs money, or forces you outside, or somebody smells it on you. This one costs nothing, makes no noise, and nobody ever knows. There is not one single wall between you and it. That is exactly why it has grown for years without anyone stopping it." } },
+      { "type": "reason", "settings": { "n": "03", "title": "You are not a loser. You are losing to a machine built to beat you", "body": "Thousands of very smart, very well-paid people spend their whole day figuring out how to keep you on that page one minute longer. Their only job is to beat your willpower, every single night. Losing to that does not make you broken. It makes you the customer." } },
+      { "type": "reason", "settings": { "n": "04", "title": "The habit takes one hour. The shame steals the whole next day", "body": "This is the part that really fucks with your head. Not the videos. The morning after. You walk around smaller, feeling like a fake, dodging people, acting guilty for no reason anyone can see. And the sick joke? Feeling like a loser is exactly the thing that drives you back to it that night." } },
+      { "type": "reason", "settings": { "n": "05", "title": "You are fighting this completely alone. That is why you keep losing", "body": "Nobody knows. Not your mates, not your girlfriend, not your brother. You never say it out loud, so it never gets smaller. It just sits in your head and wins by default. Almost every man who actually got out had something outside his own head. You have had nothing." } },
+      { "type": "reason", "settings": { "n": "06", "title": "'Starting Monday' is the reason you have been stuck for years", "body": "Here is the one nobody says out loud. Every 'last time' comes with a Monday attached. One bad night and the whole thing is 'over', so you binge, feel destroyed, and wait for the next Monday. That is not quitting. That is a coin flip once a week, and every loss makes the next one easier to lose. This is exactly how the habit stays alive for a decade." } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "legal-page",
+      "settings": {
+        "eyebrow": "Imprint",
+        "title": "Who is behind this",
+        "intro": "One person, under his own name, with an inbox he actually reads."
+      },
+      "blocks": {
+        "b1": { "type": "legal_section", "settings": { "heading": "Trading entity", "body": "<p>Plainly is a brand of EXECUTIVE LODGINGS LTD, a private limited company incorporated in England and Wales, United Kingdom on 25 September 2024.</p><p>Registered office: 20 Wenlock Road, London, United Kingdom, N1 7GU.</p><p>Company number 15979315. SIC code 55100.</p>" } },
+        "b2": { "type": "legal_section", "settings": { "heading": "Director", "body": "<p>Banah Sarko Shawki.</p>" } },
+        "b3": { "type": "legal_section", "settings": { "heading": "Responsible for content", "body": "<p>Daniel Vos. Not a doctor, and no professional title is claimed anywhere on this site.</p>" } },
+        "b4": { "type": "legal_section", "settings": { "heading": "Contact", "body": "<p>daniel@plainly.co. Read and answered by Daniel Vos, usually the same day.</p>" } },
+        "b5": { "type": "legal_section", "settings": { "heading": "Dispute resolution", "body": "<p>The European Commission provides a platform for online dispute resolution. I would much rather you email me first and let me fix it.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5"]
+    }
+  },
+  "order": ["main"]
+}

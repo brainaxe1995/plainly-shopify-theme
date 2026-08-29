@@ -1,0 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "legal-page",
+      "settings": {
+        "eyebrow": "Shipping",
+        "title": "Plain box, about five days, free",
+        "intro": "Shipping is included in the price shown. There is no surprise charge at checkout."
+      },
+      "blocks": {
+        "b1": { "type": "legal_section", "settings": { "heading": "How long it takes", "body": "<p>Orders are packed by hand, usually within one working day. Delivery is typically about 5 days. You get a tracking link as soon as it ships.</p>" } },
+        "b2": { "type": "legal_section", "settings": { "heading": "What the parcel looks like", "body": "<p>A plain outer box. No logo, no window, no product name and no branded tape. The sender name on the label is neutral.</p>" } },
+        "b3": { "type": "legal_section", "settings": { "heading": "Where I ship", "body": "<p>Countries and rates are configured per market. If your country is not offered at checkout, it is not supported yet.</p>" } },
+        "b4": { "type": "legal_section", "settings": { "heading": "If it does not arrive", "body": "<p>Tell me and I will chase the carrier or send a replacement. You should not have to spend your afternoon on hold about this.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "legal-page",
+      "settings": {
+        "eyebrow": "Privacy",
+        "title": "What I collect, and what I will never do with it",
+        "intro": "Privacy is not a compliance page here, it is the reason a lot of people buy at all. So this is written plainly."
+      },
+      "blocks": {
+        "b1": { "type": "legal_section", "settings": { "heading": "Who controls your data", "body": "<p>Plainly is a brand of EXECUTIVE LODGINGS LTD, a private limited company incorporated in England and Wales, United Kingdom. Registered office: 20 Wenlock Road, London, United Kingdom, N1 7GU. Company number 15979315.</p><p>As the data controller, EXECUTIVE LODGINGS LTD is responsible for the personal data described on this page. The named contact for data matters is Daniel Vos.</p>" } },
+        "b2": { "type": "legal_section", "settings": { "heading": "What I collect", "body": "<p>Your name, delivery address, email address and order history. Payment details are handled by the payment provider and never reach me.</p><p>Anonymous usage statistics, only after you accept the cookie banner. Nothing is loaded before you do.</p>" } },
+        "b3": { "type": "legal_section", "settings": { "heading": "What I never do", "body": "<p>I never build a retargeting audience from this traffic. You will not be followed around the internet by ads because you read this site.</p><p>I never send your email address or any identifier to an advertising platform.</p><p>The product name never appears in an event label, an invoice line or an email subject.</p>" } },
+        "b4": { "type": "legal_section", "settings": { "heading": "Packaging and billing", "body": "<p>The outer box carries no branding. The billing descriptor on your card statement is neutral and does not name the product.</p>" } },
+        "b5": { "type": "legal_section", "settings": { "heading": "Your rights", "body": "<p>You can ask for a copy of your data, a correction, or complete deletion. Write to daniel@plainly.co and I do it, normally the same day.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5"]
+    }
+  },
+  "order": ["main"]
+}

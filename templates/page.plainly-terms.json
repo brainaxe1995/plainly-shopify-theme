@@ -1,0 +1,30 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "legal-page",
+      "settings": {
+        "eyebrow": "Terms",
+        "title": "Terms of sale",
+        "intro": "Short, because there is not much to it. One product, one price, and you can stop whenever you want."
+      },
+      "blocks": {
+        "b1": { "type": "legal_section", "settings": { "heading": "Who you are buying from", "body": "<p>Plainly is a brand of EXECUTIVE LODGINGS LTD, a private limited company incorporated in England and Wales, United Kingdom on 25 September 2024. Registered office: 20 Wenlock Road, London, United Kingdom, N1 7GU. Company number 15979315.</p><p>Director: Banah Sarko Shawki. Registered details and address are also on the imprint page.</p>" } },
+        "b2": { "type": "legal_section", "settings": { "heading": "What is being sold", "body": "<p>A food supplement and a written routine. It is not a medicine, it is not a treatment, and no claim is made that it prevents, treats or cures any condition.</p>" } },
+        "b3": { "type": "legal_section", "settings": { "heading": "Prices", "body": "<p>Prices are shown including tax where applicable and in your local currency where that is supported. Any crossed out reference price is a price actually charged in the previous 30 days. There are no countdown timers and no stock counters on this site.</p>" } },
+        "b4": { "type": "legal_section", "settings": { "heading": "The monthly repeat", "body": "<p>If you choose the 30 day repeat, you are charged every 30 days until you stop it. You can stop it in one click from your account, at any time, with no notice period. Cancelling before the next charge date means you are not charged again.</p>" } },
+        "b5": { "type": "legal_section", "settings": { "heading": "If something goes wrong", "body": "<p>Write to daniel@plainly.co. I read it and answer, usually the same day. Your statutory rights are not affected by anything on this page.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5"]
+    }
+  },
+  "order": ["main"]
+}

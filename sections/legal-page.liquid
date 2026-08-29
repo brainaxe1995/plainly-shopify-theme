@@ -1,0 +1,43 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="heading mt-4">{{ section.settings.title }}</h1>
+    <p class="mt-4 text-muted-foreground">{{ section.settings.intro }}</p>
+    <div class="rule-hard mt-8 space-y-8 pt-8">
+      {% for block in section.blocks %}
+        {% if block.type == 'legal_section' %}
+          <section>
+            <h2 class="subheading">{{ block.settings.heading }}</h2>
+            <div class="mt-3 space-y-3 text-muted-foreground">
+              {{ block.settings.body }}
+            </div>
+          </section>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <p class="mt-12 text-[14px] text-muted-foreground">
+      Placeholder text. Have this reviewed against the trading entity, registered address and local law before the store goes live.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Legal page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Legal" },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "textarea", "id": "intro", "label": "Intro" }
+  ],
+  "blocks": [
+    {
+      "type": "legal_section",
+      "name": "Section",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body (HTML)" }
+      ]
+    }
+  ]
+}
+{% endschema %}
