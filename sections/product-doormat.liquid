@@ -17,9 +17,22 @@
 {
   "name": "Product doormat",
   "settings": [
-    { "type": "image_picker", "id": "image" },
-    { "type": "text", "id": "image_alt", "default": "Photo · the plain outer box, as it lands" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "default": "Photo \u00b7 the plain outer box, as it lands",
+      "label": "Image alt"
+    }
   ],
-  "presets": [ { "name": "Product doormat" } ]
+  "presets": [
+    {
+      "name": "Product doormat"
+    }
+  ]
 }
 {% endschema %}
