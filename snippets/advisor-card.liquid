@@ -10,7 +10,7 @@
     {% if settings.founder_image %}
       <img src="{{ settings.founder_image | image_url: width: 96 }}" alt="{{ settings.founder_name }}" width="48" height="48" class="size-12 shrink-0 rounded-full border border-border object-cover">
     {% else %}
-      <span aria-hidden="true" class="photo-slot size-12 shrink-0 rounded-full text-[9px] tracking-[0.1em]">Photo</span>
+      <img src="{{ 'founder.jpg' | asset_url }}" alt="{{ settings.founder_name | default: 'Daniel Vos' }}" width="48" height="48" class="size-12 shrink-0 rounded-full border border-border object-cover">
     {% endif %}
     <div>
       <p class="text-[15px] font-semibold">{{ settings.founder_name | default: 'Daniel Vos' }}</p>
