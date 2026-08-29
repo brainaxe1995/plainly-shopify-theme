@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+{%- assign _rtl = false -%}
+{%- assign _iso = request.locale.iso_code | default: 'en' -%}
+{%- if _iso == 'ar' or _iso == 'he' or _iso == 'fa' or _iso == 'ur' -%}{%- assign _rtl = true -%}{%- endif -%}
+<html lang="{{ _iso }}"{% if _rtl %} dir="rtl"{% endif %}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
