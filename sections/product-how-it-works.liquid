@@ -25,27 +25,69 @@
 {
   "name": "Product how-it-works",
   "settings": [
-    { "type": "image_picker", "id": "image" },
-    { "type": "text", "id": "image_alt", "default": "Photo · hero shot · the pack" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "default": "Photo \u00b7 hero shot \u00b7 the pack",
+      "label": "Image alt"
+    }
   ],
   "blocks": [
     {
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "text", "id": "n", "default": "1" },
-        { "type": "text", "id": "title" },
-        { "type": "textarea", "id": "body" }
+        {
+          "type": "text",
+          "id": "n",
+          "default": "1",
+          "label": "N"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "step", "settings": { "n": "1", "title": "You order tonight", "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger." } },
-      { "type": "step", "settings": { "n": "2", "title": "The box lands in about 5 days", "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it." } },
-      { "type": "step", "settings": { "n": "3", "title": "It comes back every 30 days, until you say stop", "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email." } }
+      {
+        "type": "step",
+        "settings": {
+          "n": "1",
+          "title": "You order tonight",
+          "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger."
+        }
+      },
+      {
+        "type": "step",
+        "settings": {
+          "n": "2",
+          "title": "The box lands in about 5 days",
+          "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it."
+        }
+      },
+      {
+        "type": "step",
+        "settings": {
+          "n": "3",
+          "title": "It comes back every 30 days, until you say stop",
+          "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email."
+        }
+      }
     ]
-  },
-  "presets": [ { "name": "Product how-it-works" } ]
+  }
 }
 {% endschema %}
