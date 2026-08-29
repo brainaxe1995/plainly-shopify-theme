@@ -94,10 +94,6 @@
   if (defaultActive) currentVariantId = defaultActive.dataset.variantId;
 
   if (ctaEl) ctaEl.addEventListener('click', () => submitPack(currentVariantId));
-<<<<<<< Updated upstream
-  if (barCtaEl) barCtaEl.addEventListener('click', () => submitPack(currentVariantId));
-=======
   // Sticky bar delegates to main CTA click (single source of truth)
   if (barCtaEl) barCtaEl.addEventListener('click', () => { if (ctaEl && !ctaEl.disabled) ctaEl.click(); });
->>>>>>> Stashed changes
 })();
