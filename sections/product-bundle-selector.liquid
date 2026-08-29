@@ -147,7 +147,9 @@
         <p class="truncate text-[13px] font-bold tracking-[0.06em] text-muted-foreground uppercase">Plain box, one a day</p>
         <p class="text-[20px] leading-tight font-semibold tabular-nums" data-buy-bar-price>{{ default_pack.price | money }}</p>
       </div>
-      <a href="#pick" class="btn-base btn-ink shrink-0">Start tonight</a>
+      <button type="button" data-buy-bar-cta class="btn-base btn-ink shrink-0" data-cta-pre="Start tonight for">
+        Start tonight for {{ default_pack.price | money }}
+      </button>
     </div>
   </div>
 </section>
