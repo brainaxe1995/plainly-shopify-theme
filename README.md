@@ -1,6 +1,6 @@
-# Plainly — Shopify Theme
+# Plainlycorn — Shopify Theme
 
-Pixel-perfect Shopify port of the Plainly React app. Dark near-black surface, acid-green accent, Anton display + Archivo body.
+Pixel-perfect Shopify port of the Plainlycorn React app. Dark near-black surface, acid-green accent, Anton display + Archivo body.
 
 ## Structure
 
@@ -25,7 +25,7 @@ templates/       index.json, product.json, page.json, page.plainly-buy.json, col
 Import `plainly-products.csv` (in repo root, one level up from theme):
 
 1. Shopify Admin → **Products → Import** → upload CSV.
-2. 6 products land: Plainly · 1 week / 2 weeks / 4 weeks / 8 weeks / 12 weeks / 24 weeks.
+2. 6 products land: Plainlycorn · 1 week / 2 weeks / 4 weeks / 8 weeks / 12 weeks / 24 weeks.
 3. Add all 6 to a new collection called **"Bundles"** (or whichever handle you pick).
 4. On the theme customizer, open the **product page** for `page.plainly-buy` template → **Bundle selector** section → pick the "Bundles" collection.
 
