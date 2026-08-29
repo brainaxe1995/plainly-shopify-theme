@@ -53,7 +53,9 @@
         </ul>
 
         <div class="mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-border pt-4">
-          <span class="eyebrow" data-selected-label>Your price &middot; {{ default_pack.title }}</span>
+          {%- assign default_label = default_pack.title | split: ' · ' | last -%}
+          {%- if default_label == default_pack.title -%}{%- assign default_label = default_pack.title | split: ' - ' | last -%}{%- endif -%}
+          <span class="eyebrow" data-selected-label>Your price &middot; {{ default_label }}</span>
           <span class="text-[28px] font-semibold text-forest tabular-nums" data-selected-price>{{ default_pack.price | money }}</span>
         </div>
         <p class="mt-2 text-[14px] text-muted-foreground" data-selected-shipping>{{ default_shipping_msg }}</p>
@@ -79,10 +81,12 @@
               {% assign per_day_cents = product.price | divided_by: days %}
             {% endif %}
 
+            {%- assign pack_label = product.title | split: ' · ' | last -%}
+            {%- if pack_label == product.title -%}{%- assign pack_label = product.title | split: ' - ' | last -%}{%- endif -%}
             <label class="pack-row{% if is_default %} is-active{% endif %}{% unless product.available %} is-soldout{% endunless %}"
                    data-price-cents="{{ product.price }}"
                    data-price-formatted="{{ product.price | money | escape }}"
-                   data-label="{{ product.title | escape }}"
+                   data-label="{{ pack_label | escape }}"
                    data-sold-out="{{ sold_out }}"
                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                    data-url="{{ product.url }}">
@@ -92,7 +96,7 @@
               <input type="radio" name="pack" value="{{ product.id }}" {% if is_default %}checked{% endif %} {% unless product.available %}disabled{% endunless %}>
               <span class="pack-radio"><span class="pack-radio-dot"></span></span>
               <span class="min-w-0">
-                <span class="block text-[20px] leading-tight font-semibold sm:text-[22px]">{{ product.title }}</span>
+                <span class="block text-[20px] leading-tight font-semibold sm:text-[22px]">{{ pack_label }}</span>
                 <span class="block text-[15px] text-muted-foreground">
                   {{ tablets }} tablet{% if tablets != 1 %}s{% endif %} &middot; one for every night
                 </span>

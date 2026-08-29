@@ -1,9 +1,14 @@
 {%- assign buy_url = section.settings.product_url | default: '/pages/buy' -%}
 {%- assign read_url = section.settings.read_url | default: '/pages/read' -%}
+{%- assign logo_height = section.settings.logo_height | default: 28 -%}
 <header class="header-sticky">
   <div class="page-grid flex h-16 items-center justify-between gap-4">
-    <a href="{{ routes.root_url }}" class="font-display text-[22px] tracking-[0.01em]">
-      {{ section.settings.brand_name | default: shop.name }}
+    <a href="{{ routes.root_url }}" class="flex items-center" aria-label="{{ section.settings.brand_name | default: shop.name }}">
+      {% if section.settings.logo %}
+        <img src="{{ section.settings.logo | image_url: width: 800 }}" alt="{{ section.settings.brand_name | default: shop.name }}" style="height:{{ logo_height }}px;width:auto;display:block" loading="eager">
+      {% else %}
+        <img src="{{ 'logo.png' | asset_url }}" alt="{{ section.settings.brand_name | default: shop.name }}" style="height:{{ logo_height }}px;width:auto;display:block" loading="eager">
+      {% endif %}
     </a>
     <nav aria-label="Main" class="flex items-center gap-6">
       <a href="{{ read_url }}" class="hidden text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground sm:inline">
@@ -16,7 +21,7 @@
         Start &middot; {% render 'price', cents: settings.starter_price_cents %}
       </a>
       <a href="{{ routes.cart_url }}" class="relative text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground">
-        Bag{% if cart.item_count > 0 %} · {{ cart.item_count }}{% endif %}
+        Bag{% if cart.item_count > 0 %} &middot; {{ cart.item_count }}{% endif %}
       </a>
     </nav>
   </div>
@@ -26,8 +31,10 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Plainlycorn" },
-    { "type": "url", "id": "read_url", "label": "Read URL (default: /blogs/news)" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (falls back to bundled logo.png)" },
+    { "type": "range", "id": "logo_height", "label": "Logo height (px)", "min": 20, "max": 64, "step": 2, "default": 28, "unit": "px" },
+    { "type": "text", "id": "brand_name", "label": "Brand name (used for alt text)", "default": "Plainlycorn" },
+    { "type": "url", "id": "read_url", "label": "Read URL (default: /pages/read)" },
     { "type": "url", "id": "product_url", "label": "Product URL (default: /pages/buy)" }
   ]
 }
