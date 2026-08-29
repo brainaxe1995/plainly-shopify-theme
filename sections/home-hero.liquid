@@ -31,30 +31,117 @@
 {
   "name": "Home hero",
   "settings": [
-    { "type": "text", "id": "eyebrow", "default": "Read this before tonight" },
-    { "type": "text", "id": "headline_start", "default": "I watched porn every night for a year." },
-    { "type": "text", "id": "headline_accent", "default": "Then I found out why I could not stop." },
-    { "type": "textarea", "id": "subline_1", "default": "It was never willpower. Every night at 1am the same thing happened, and nobody could tell me why. So I worked it out. And what I found will annoy you, because it is so simple." },
-    { "type": "textarea", "id": "subline_2", "default": "Some men just want to stop masturbating. That is exactly who this is for. One tablet a day, and the nights get easier." },
-    { "type": "textarea", "id": "subline_3_pre", "label": "Subline 3 · text before price", "default": "So our specialist put together one daily tablet from simple ingredients, and that is what we ship. One a day. No app, no coach, no course. It starts at" },
-    { "type": "textarea", "id": "subline_3_post", "label": "Subline 3 · text after price", "default": ". Less than the nights you are losing." },
-    { "type": "text", "id": "cta_primary_label_pre", "label": "CTA · text before price", "default": "Start tonight for" },
-    { "type": "url", "id": "cta_primary_url" },
-    { "type": "text", "id": "cta_secondary_label", "default": "The 6 reasons you always go back" },
-    { "type": "url", "id": "cta_secondary_url" },
-    { "type": "text", "id": "trust_line", "default": "60 nights or your money back · stop in one click" }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Read this before tonight",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "headline_start",
+      "default": "I watched porn every night for a year.",
+      "label": "Headline start"
+    },
+    {
+      "type": "text",
+      "id": "headline_accent",
+      "default": "Then I found out why I could not stop.",
+      "label": "Headline accent"
+    },
+    {
+      "type": "textarea",
+      "id": "subline_1",
+      "default": "It was never willpower. Every night at 1am the same thing happened, and nobody could tell me why. So I worked it out. And what I found will annoy you, because it is so simple.",
+      "label": "Subline 1"
+    },
+    {
+      "type": "textarea",
+      "id": "subline_2",
+      "default": "Some men just want to stop masturbating. That is exactly who this is for. One tablet a day, and the nights get easier.",
+      "label": "Subline 2"
+    },
+    {
+      "type": "textarea",
+      "id": "subline_3_pre",
+      "label": "Subline 3 \u00b7 text before price",
+      "default": "So our specialist put together one daily tablet from simple ingredients, and that is what we ship. One a day. No app, no coach, no course. It starts at"
+    },
+    {
+      "type": "textarea",
+      "id": "subline_3_post",
+      "label": "Subline 3 \u00b7 text after price",
+      "default": ". Less than the nights you are losing."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label_pre",
+      "label": "CTA \u00b7 text before price",
+      "default": "Start tonight for"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Cta primary url"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "default": "The 6 reasons you always go back",
+      "label": "Cta secondary label"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "Cta secondary url"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "default": "60 nights or your money back \u00b7 stop in one click",
+      "label": "Trust line"
+    }
   ],
   "blocks": [
-    { "type": "trust_pill", "name": "Trust pill", "settings": [ { "type": "text", "id": "text", "label": "Text" } ] }
+    {
+      "type": "trust_pill",
+      "name": "Trust pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
   ],
   "default": {
     "blocks": [
-      { "type": "trust_pill", "settings": { "text": "Plain box, no logo" } },
-      { "type": "trust_pill", "settings": { "text": "Nothing on your bank statement" } },
-      { "type": "trust_pill", "settings": { "text": "Stop any time" } },
-      { "type": "trust_pill", "settings": { "text": "A real person answers you" } }
+      {
+        "type": "trust_pill",
+        "settings": {
+          "text": "Plain box, no logo"
+        }
+      },
+      {
+        "type": "trust_pill",
+        "settings": {
+          "text": "Nothing on your bank statement"
+        }
+      },
+      {
+        "type": "trust_pill",
+        "settings": {
+          "text": "Stop any time"
+        }
+      },
+      {
+        "type": "trust_pill",
+        "settings": {
+          "text": "A real person answers you"
+        }
+      }
     ]
-  },
-  "presets": [ { "name": "Home hero" } ]
+  }
 }
 {% endschema %}
