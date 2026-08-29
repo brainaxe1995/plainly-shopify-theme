@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -8,7 +17,7 @@
         "intro": "I would rather give the money back than keep it from someone I did not help. That is not a marketing line, it is how this works."
       },
       "blocks": {
-        "b1": { "type": "legal_section", "settings": { "heading": "How to ask", "body": "<p>Write to daniel@plainly.co and say it did not work for you. You do not have to explain yourself or fill in a form.</p>" } },
+        "b1": { "type": "legal_section", "settings": { "heading": "How to ask", "body": "<p>Write to daniel@plainlycorn.com and say it did not work for you. You do not have to explain yourself or fill in a form.</p>" } },
         "b2": { "type": "legal_section", "settings": { "heading": "Withdrawal period", "body": "<p>You have 14 days from delivery to withdraw from the order without giving a reason. For hygiene reasons an opened supplement cannot always be resold, so in most cases I refund you and ask you not to bother sending it back.</p>" } },
         "b3": { "type": "legal_section", "settings": { "heading": "How long it takes", "body": "<p>The refund goes back to the original payment method. It usually lands within 5 working days of me confirming it.</p>" } },
         "b4": { "type": "legal_section", "settings": { "heading": "Repeat deliveries", "body": "<p>Stopping the monthly repeat is separate and takes one click in your account. If a delivery went out that you did not want, tell me and I refund it.</p>" } }
