@@ -9,13 +9,44 @@
  */
 {
   "sections": {
-    "hero": { "type": "home-hero", "settings": {} },
-    "cost": { "type": "home-cost", "settings": {} },
-    "story": { "type": "home-story", "settings": { "image_alt": "Photo · 1am · the night this is about" } },
-    "how": { "type": "home-how-it-works", "settings": {} },
+    "hero": {
+      "type": "home-hero",
+      "settings": {},
+      "blocks": {
+        "p1": { "type": "trust_pill", "settings": { "text": "Plain box, no logo" } },
+        "p2": { "type": "trust_pill", "settings": { "text": "Nothing on your bank statement" } },
+        "p3": { "type": "trust_pill", "settings": { "text": "Stop any time" } },
+        "p4": { "type": "trust_pill", "settings": { "text": "A real person answers you" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "cost": { "type": "home-cost", "settings": { "per_day_note": "$0.71" } },
+    "story": { "type": "home-story", "settings": {} },
+    "how": {
+      "type": "home-how-it-works",
+      "settings": {},
+      "blocks": {
+        "s1": { "type": "step", "settings": { "n": "01", "title": "You order tonight", "body": "It takes one minute. Start with one week. Or take a bigger box if you know one week is not enough." } },
+        "s2": { "type": "step", "settings": { "n": "02", "title": "It arrives in about 5 days", "body": "A plain box. No name on it. Nothing on your bank statement that tells anyone what it is." } },
+        "s3": { "type": "step", "settings": { "n": "03", "title": "You take one a day", "body": "One tablet a day. That is the whole thing you have to do. No app, no course, no journal, no coach." } },
+        "s4": { "type": "step", "settings": { "n": "04", "title": "We check in with you", "body": "One short message from us. A real person reads your answer. If it is not helping, we fix it or you get your money back." } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    },
     "doormat": { "type": "home-doormat", "settings": {} },
     "guarantee": { "type": "home-guarantee", "settings": {} },
-    "faq": { "type": "home-faq", "settings": {} },
+    "faq": {
+      "type": "home-faq",
+      "settings": {},
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "q": "Will anyone know what I ordered?", "a": "No. The box is plain, with no logo. Your bank statement shows a normal company name. Nobody can tell." } },
+        "q2": { "type": "qa", "settings": { "q": "How fast does it come?", "a": "About 5 days. You get a tracking link when it is sent." } },
+        "q3": { "type": "qa", "settings": { "q": "Is this a medicine?", "a": "No. It is not a medicine and it does not cure anything. If you are worried about your health or you feel out of control, talk to a doctor." } },
+        "q4": { "type": "qa", "settings": { "q": "Can I stop the monthly delivery?", "a": "Yes. One click, any time. No phone call, no form, no waiting." } },
+        "q5": { "type": "qa", "settings": { "q": "What if it does nothing for me?", "a": "You have 60 nights to find out. If nothing changed, send us one line and you get your money back." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"]
+    },
     "support": { "type": "home-support-note", "settings": {} },
     "final": { "type": "home-final-cta", "settings": {} }
   },

@@ -9,7 +9,19 @@
  */
 {
   "sections": {
-    "main": { "type": "read-article", "settings": {} }
+    "main": {
+      "type": "read-article",
+      "settings": {},
+      "blocks": {
+        "r1": { "type": "reason", "settings": { "n": "01", "title": "You do not quit at night. You quit at 10am, then forget you ever decided", "body": "At 10 in the morning you hate yourself and swear it is over. Then 1am comes, you are tired and bored and alone, and that guy at 10am is dead to you. You are not weak. Two different men live in your head, and only one of them gets a vote when it matters." } },
+        "r2": { "type": "reason", "settings": { "n": "02", "title": "It is free, it is silent, and it is already in your hand", "body": "Every other bad habit costs money, or forces you outside, or somebody smells it on you. This one costs nothing, makes no noise, and nobody ever knows. There is not one single wall between you and it. That is exactly why it has grown for years without anyone stopping it." } },
+        "r3": { "type": "reason", "settings": { "n": "03", "title": "You are not a loser. You are losing to a machine built to beat you", "body": "Thousands of very smart, very well-paid people spend their whole day figuring out how to keep you on that page one minute longer. Their only job is to beat your willpower, every single night. Losing to that does not make you broken. It makes you the customer." } },
+        "r4": { "type": "reason", "settings": { "n": "04", "title": "The habit takes one hour. The shame steals the whole next day", "body": "This is the part that really fucks with your head. Not the videos. The morning after. You walk around smaller, feeling like a fake, dodging people, acting guilty for no reason anyone can see. And the sick joke? Feeling like a loser is exactly the thing that drives you back to it that night." } },
+        "r5": { "type": "reason", "settings": { "n": "05", "title": "You are fighting this completely alone. That is why you keep losing", "body": "Nobody knows. Not your mates, not your girlfriend, not your brother. You never say it out loud, so it never gets smaller. It just sits in your head and wins by default. Almost every man who actually got out had something outside his own head. You have had nothing." } },
+        "r6": { "type": "reason", "settings": { "n": "06", "title": "'Starting Monday' is the reason you have been stuck for years", "body": "Here is the one nobody says out loud. Every 'last time' comes with a Monday attached. One bad night and the whole thing is 'over', so you binge, feel destroyed, and wait for the next Monday. That is not quitting. That is a coin flip once a week, and every loss makes the next one easier to lose. This is exactly how the habit stays alive for a decade." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+    }
   },
   "order": ["main"]
 }

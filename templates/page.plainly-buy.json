@@ -9,53 +9,46 @@
  */
 {
   "sections": {
-    "hero": {
-      "type": "product-hero",
-      "settings": {}
-    },
-    "pick": {
-      "type": "product-bundle-selector",
-      "settings": {
-        "bundle_collection": "bundles"
-      }
-    },
+    "hero": { "type": "product-hero", "settings": {} },
+    "pick": { "type": "product-bundle-selector", "settings": { "bundle_collection": "bundles" } },
     "how": {
       "type": "product-how-it-works",
-      "settings": {
-        "image_alt": "Photo \u00b7 hero shot \u00b7 the pack"
-      }
+      "settings": {},
+      "blocks": {
+        "s1": { "type": "step", "settings": { "n": "1", "title": "You order tonight", "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger." } },
+        "s2": { "type": "step", "settings": { "n": "2", "title": "The box lands in about 5 days", "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it." } },
+        "s3": { "type": "step", "settings": { "n": "3", "title": "It comes back every 30 days, until you say stop", "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email." } }
+      },
+      "block_order": ["s1", "s2", "s3"]
     },
-    "doormat": {
-      "type": "product-doormat",
-      "settings": {
-        "image_alt": "Photo \u00b7 the plain outer box, as it lands"
-      }
-    },
+    "doormat": { "type": "product-doormat", "settings": {} },
     "refusals": {
       "type": "product-refusals",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "r1": { "type": "refusal", "settings": { "text": "No app, no login, no streak counter telling you that you failed." } },
+        "r2": { "type": "refusal", "settings": { "text": "No 90 day course you have to finish before you get anything." } },
+        "r3": { "type": "refusal", "settings": { "text": "No extra product pushed on you after you buy." } },
+        "r4": { "type": "refusal", "settings": { "text": "No calling anyone to stop your deliveries. One click and it stops." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
     },
     "faq": {
       "type": "product-faq",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "q": "Will anyone know what I ordered?", "a": "No. Plain box, no logo on the outside. Your bank statement shows a normal company name. No product name in any email we send you." } },
+        "q2": { "type": "qa", "settings": { "q": "What is actually in the box?", "a": "Your tablets. One a day. That is it. No course, no app, no homework. Just what our specialist recommends." } },
+        "q3": { "type": "qa", "settings": { "q": "How fast does it come?", "a": "About 5 days. You get a tracking link when it is sent." } },
+        "q4": { "type": "qa", "settings": { "q": "Is this a medicine?", "a": "No. It is not a medicine and it does not treat any illness. If you feel out of control, or it is hurting your work or your relationship, please also talk to a doctor." } },
+        "q5": { "type": "qa", "settings": { "q": "Can I stop the monthly delivery?", "a": "Yes, any time, one click in your account. No calls, no forms, no waiting." } },
+        "q6": { "type": "qa", "settings": { "q": "What if it does nothing for me?", "a": "Send us one line and you get your money back. You keep the box. We would rather refund you than keep money from a man we did not help." } },
+        "q7": { "type": "qa", "settings": { "q": "Full ingredient list", "a": "Placeholder until the final pack is confirmed: the full list of ingredients and amounts per daily tablet, allergen information and storage instructions go here. You can read this before you pay." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"]
     },
-    "last": {
-      "type": "product-last-cta",
-      "settings": {}
-    },
-    "support": {
-      "type": "home-support-note",
-      "settings": {}
-    }
+    "last": { "type": "product-last-cta", "settings": {} },
+    "support": { "type": "home-support-note", "settings": {} }
   },
-  "order": [
-    "hero",
-    "pick",
-    "how",
-    "doormat",
-    "refusals",
-    "faq",
-    "last",
-    "support"
-  ]
+  "order": ["hero", "pick", "how", "doormat", "refusals", "faq", "last", "support"]
 }
