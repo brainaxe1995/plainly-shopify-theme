@@ -1,8 +1,9 @@
+{%- assign starter = settings.starter_price_cents | money -%}
 <section class="border-y border-border bg-paper">
   <div class="page-grid section-y">
     <div class="text-column text-center">
       <p class="eyebrow">Nobody wants to do this maths. Do it.</p>
-      <h2 class="heading mt-4">One more month of this costs you far more than $19.95.</h2>
+      <h2 class="heading mt-4">One more month of this costs you far more than {{ starter }}.</h2>
     </div>
     <div class="mx-auto mt-12 grid max-w-4xl gap-10 sm:grid-cols-3">
       <div class="text-center">
@@ -14,12 +15,12 @@
         <p class="mx-auto mt-3 max-w-[26ch] text-[16px] text-muted-foreground">What a bad night takes from the next morning. Tired, late, behind.</p>
       </div>
       <div class="text-center">
-        <p class="numeral text-forest">$0.71</p>
+        <p class="numeral text-forest">{{ section.settings.per_day_note }}</p>
         <p class="mx-auto mt-3 max-w-[26ch] text-[16px] text-muted-foreground">What the biggest box costs per day. Cheaper than your coffee.</p>
       </div>
     </div>
     <div class="mt-12 text-center">
-      <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
+      <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink">{{ section.settings.cta_label_pre }} {{ starter }}</a>
     </div>
   </div>
 </section>
@@ -28,7 +29,8 @@
 {
   "name": "Home cost",
   "settings": [
-    { "type": "text", "id": "cta_label", "default": "Stop the next thirty for $19.95" },
+    { "type": "text", "id": "per_day_note", "label": "Per-day cost note (numeral)", "default": "Low" },
+    { "type": "text", "id": "cta_label_pre", "label": "CTA · text before price", "default": "Stop the next thirty for" },
     { "type": "url", "id": "cta_url" }
   ],
   "presets": [ { "name": "Home cost" } ]

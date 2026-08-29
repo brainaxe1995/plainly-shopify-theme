@@ -1,16 +1,20 @@
+{%- assign starter = settings.starter_price_cents | money -%}
+{%- assign ship_over = settings.free_shipping_over_cents | money -%}
+{%- assign ship_fee = settings.ship_fee_cents | money -%}
 <section class="page-grid section-y">
   {% assign bundle_collection = collections[section.settings.bundle_collection] %}
   {% assign packs = bundle_collection.products | sort: 'price' %}
   {% assign default_pack = packs[2] | default: packs[0] %}
-  {% assign default_shipping_msg = 'Free shipping, because this order is over $99.' %}
-  {% if default_pack.price_min < section.settings.free_over | times: 100 %}
-    {% assign default_shipping_msg = '$' | append: section.settings.ship_fee | append: ' shipping added at checkout. Free over $' | append: section.settings.free_over | append: '.' %}
+  {% if default_pack.price >= settings.free_shipping_over_cents %}
+    {% assign default_shipping_msg = 'Free shipping, because this order is over ' | append: ship_over | append: '.' %}
+  {% else %}
+    {% assign default_shipping_msg = ship_fee | append: ' shipping added at checkout. Free over ' | append: ship_over | append: '.' %}
   {% endif %}
 
   <div class="buying-column" data-bundle-selector
-       data-currency="$"
-       data-free-over="{{ section.settings.free_over }}"
-       data-ship-fee="{{ section.settings.ship_fee }}">
+       data-free-over-cents="{{ settings.free_shipping_over_cents }}"
+       data-ship-fee-formatted="{{ ship_fee | escape }}"
+       data-ship-over-formatted="{{ ship_over | escape }}">
     <p class="eyebrow text-center">Step 1 · Pick how long you want to be covered</p>
 
     <div class="mt-6 space-y-4">
@@ -23,7 +27,7 @@
           <li>Same mix every time, packed by hand.</li>
           <li>Plain outer box. Nothing printed on it.</li>
           <li>Nothing on your statement that gives it away.</li>
-          <li>Starts at $19.95 a week. Cancel in one click.</li>
+          <li>Starts at {{ starter }} a week. Cancel in one click.</li>
         </ul>
         <p class="mt-4 border-t border-border pt-3 text-[14px] text-muted-foreground">
           {{ settings.founder_name | default: 'Daniel Vos' }}, our specialist, decides what goes in the box and checks every batch before it ships.
@@ -32,7 +36,7 @@
 
       <div class="rounded-xl border border-forest bg-mint p-5 transition-colors md:p-6">
         <span class="inline-flex w-fit items-center rounded-full bg-forest px-3 py-1 text-[11px] font-semibold tracking-[0.14em] whitespace-nowrap text-forest-foreground uppercase">
-          Members only · no one-off boxes
+          Members only &middot; no one-off boxes
         </span>
         <p class="mt-3 text-[20px] leading-tight font-semibold">
           This only works if you never run out. So we send it again every 30 days.
@@ -49,7 +53,7 @@
         </ul>
 
         <div class="mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-border pt-4">
-          <span class="eyebrow" data-selected-label>Your price · {{ default_pack.title }}</span>
+          <span class="eyebrow" data-selected-label>Your price &middot; {{ default_pack.title }}</span>
           <span class="text-[28px] font-semibold text-forest tabular-nums" data-selected-price>{{ default_pack.price | money }}</span>
         </div>
         <p class="mt-2 text-[14px] text-muted-foreground" data-selected-shipping>{{ default_shipping_msg }}</p>
@@ -63,16 +67,21 @@
             {% assign tablets = product.metafields.plainly.tablets | default: weeks %}
             {% assign badge = product.metafields.plainly.badge %}
             {% assign tone = product.metafields.plainly.tone | default: 'muted' %}
-            {% assign sold_out = product.available | prepend: '' %}
             {% if product.available %}{% assign sold_out = 'false' %}{% else %}{% assign sold_out = 'true' %}{% endif %}
-            {% assign base_per_day = 1995 | divided_by: 700.0 %}
-            {% assign full_price_cents = base_per_day | times: weeks | times: 7 | round %}
+            {% comment %} Full-price comparison: same weeks bought at the 1-week rate (starter price). {% endcomment %}
+            {% assign full_price_cents = settings.starter_price_cents | times: weeks %}
             {% assign saving_cents = full_price_cents | minus: product.price %}
             {% assign is_default = false %}
             {% if product.id == default_pack.id %}{% assign is_default = true %}{% endif %}
+            {% assign per_day_cents = 0 %}
+            {% if weeks > 0 %}
+              {% assign days = weeks | times: 7 %}
+              {% assign per_day_cents = product.price | divided_by: days %}
+            {% endif %}
 
             <label class="pack-row{% if is_default %} is-active{% endif %}{% unless product.available %} is-soldout{% endunless %}"
-                   data-price="{{ product.price | divided_by: 100.0 }}"
+                   data-price-cents="{{ product.price }}"
+                   data-price-formatted="{{ product.price | money | escape }}"
                    data-label="{{ product.title | escape }}"
                    data-sold-out="{{ sold_out }}"
                    data-variant-id="{{ product.selected_or_first_available_variant.id }}"
@@ -85,13 +94,10 @@
               <span class="min-w-0">
                 <span class="block text-[20px] leading-tight font-semibold sm:text-[22px]">{{ product.title }}</span>
                 <span class="block text-[15px] text-muted-foreground">
-                  {{ tablets }} tablet{% if tablets != 1 %}s{% endif %} · one for every night
+                  {{ tablets }} tablet{% if tablets != 1 %}s{% endif %} &middot; one for every night
                 </span>
                 <span class="block text-[15px] text-muted-foreground">
-                  <span class="font-semibold text-foreground tabular-nums">
-                    {% assign per_day = product.price | divided_by: weeks | divided_by: 7 %}
-                    {{ per_day | money }}
-                  </span> per day
+                  <span class="font-semibold text-foreground tabular-nums">{{ per_day_cents | money }}</span> per day
                 </span>
                 {% if saving_cents > 0 and product.available %}
                   <span class="mt-2 inline-flex w-fit rounded-full bg-mint px-3 py-1 text-[13px] font-semibold text-forest tabular-nums">Save {{ saving_cents | money }}</span>
@@ -116,11 +122,11 @@
       <p class="flex flex-wrap justify-center gap-x-5 gap-y-1 text-[12px] font-semibold tracking-[0.1em] text-muted-foreground uppercase">
         <span>Plain box</span>
         <span>Discreet statement</span>
-        <span>Free over ${{ section.settings.free_over }}</span>
+        <span>Free over {{ ship_over }}</span>
         <span>Stop any time</span>
       </p>
 
-      <button type="button" data-selected-cta class="btn-base btn-ink w-full">
+      <button type="button" data-selected-cta class="btn-base btn-ink w-full" data-cta-pre="Yes, start tonight for">
         Yes, start tonight for {{ default_pack.price | money }}
       </button>
       <p class="text-center text-[14px] text-muted-foreground">
@@ -129,7 +135,7 @@
     </div>
   </div>
 
-  {% comment %} Sticky buy bar at bottom {% endcomment %}
+  {% comment %} Sticky buy bar {% endcomment %}
   <div class="h-28" aria-hidden="true"></div>
   <div data-buy-bar class="buy-bar" aria-hidden="true">
     <div class="page-grid flex items-center justify-between gap-4 py-3">
@@ -146,9 +152,7 @@
 {
   "name": "Bundle selector",
   "settings": [
-    { "type": "collection", "id": "bundle_collection", "label": "Bundle collection (6 products)" },
-    { "type": "number", "id": "free_over", "label": "Free shipping over", "default": 99 },
-    { "type": "number", "id": "ship_fee", "label": "Shipping fee", "default": 7.95 }
+    { "type": "collection", "id": "bundle_collection", "label": "Bundle collection (6 products)" }
   ],
   "presets": [ { "name": "Bundle selector" } ]
 }

@@ -2,9 +2,9 @@
   {
     "name": "theme_info",
     "theme_name": "Plainly",
-    "theme_version": "1.0.0",
+    "theme_version": "1.1.0",
     "theme_author": "Plainly",
-    "theme_documentation_url": "https://github.com/",
+    "theme_documentation_url": "https://github.com/brainaxe1995/plainly-shopify-theme",
     "theme_support_url": "mailto:daniel@plainly.co"
   },
   {
@@ -18,10 +18,12 @@
     ]
   },
   {
-    "name": "Colors",
+    "name": "Pricing & shipping",
     "settings": [
-      { "type": "header", "content": "Palette is baked into theme.css. Overrides for future variants." },
-      { "type": "color", "id": "accent_override", "label": "Accent override (leave empty for default acid green)" }
+      { "type": "header", "content": "All amounts entered in the SMALLEST unit of the store currency (cents / fils / pence). Displayed via Shopify money filter — so if store currency is USD they render as $, AED renders as د.إ, etc. Multi-currency via Shopify Markets converts automatically." },
+      { "type": "number", "id": "starter_price_cents", "label": "Starter price (in cents)", "default": 1995, "info": "Example: 1995 = 19.95 in store currency." },
+      { "type": "number", "id": "free_shipping_over_cents", "label": "Free shipping threshold (in cents)", "default": 9900, "info": "Example: 9900 = 99.00 in store currency." },
+      { "type": "number", "id": "ship_fee_cents", "label": "Shipping fee (in cents)", "default": 795, "info": "Example: 795 = 7.95 in store currency." }
     ]
   }
 ]

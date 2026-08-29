@@ -1,12 +1,13 @@
+{%- assign starter = settings.starter_price_cents | money -%}
 <section class="page-grid section-y">
   <div class="text-column text-center">
     <h1 class="display">
       {{ section.settings.headline_start }}
-      <span class="text-forest">{{ section.settings.headline_accent }}</span>
+      <span class="text-forest">{{ section.settings.headline_accent_pre }} {{ starter }}.</span>
     </h1>
     <p class="mx-auto mt-6 max-w-[52ch] text-[18px] text-muted-foreground">{{ section.settings.subline }}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="#pick" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
+      <a href="#pick" class="btn-base btn-ink">{{ section.settings.cta_label_pre }} {{ starter }}</a>
     </div>
     <p class="mt-4 text-[14px] text-muted-foreground">{{ section.settings.small_line }}</p>
     <div class="mt-12 text-left">
@@ -21,9 +22,9 @@
   "name": "Product hero",
   "settings": [
     { "type": "text", "id": "headline_start", "default": "You already know how tonight ends." },
-    { "type": "text", "id": "headline_accent", "default": "Change it for $19.95." },
+    { "type": "text", "id": "headline_accent_pre", "label": "Accent headline · before price", "default": "Change it for" },
     { "type": "textarea", "id": "subline", "default": "Take the advice, receive the solution. Some men just want to stop masturbating. This is for them. Our specialist put together one daily tablet. You take it, it ships every 30 days so you never run out, and there is nothing else to do. If nothing changes in 60 nights, you get your money back and you keep the box." },
-    { "type": "text", "id": "cta_label", "default": "Start tonight for $19.95" },
+    { "type": "text", "id": "cta_label_pre", "label": "CTA · before price", "default": "Start tonight for" },
     { "type": "text", "id": "small_line", "default": "Members only. Cancel in one click, any time." }
   ],
   "presets": [ { "name": "Product hero" } ]

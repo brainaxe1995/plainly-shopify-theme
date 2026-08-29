@@ -1,6 +1,7 @@
+{%- assign starter = settings.starter_price_cents | money -%}
 <section class="page-grid section-y">
   <div class="text-column text-center">
-    <h2 class="heading">{{ section.settings.headline }}</h2>
+    <h2 class="heading">{{ section.settings.headline_pre }} {{ starter }}.</h2>
     <div class="mt-8 flex justify-center">
       <a href="#pick" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
     </div>
@@ -11,7 +12,7 @@
 {
   "name": "Product last CTA",
   "settings": [
-    { "type": "text", "id": "headline", "default": "You already know how tonight ends. Change it for $19.95." },
+    { "type": "text", "id": "headline_pre", "label": "Headline · before price", "default": "You already know how tonight ends. Change it for" },
     { "type": "text", "id": "cta_label", "default": "Start tonight" }
   ],
   "presets": [ { "name": "Product last CTA" } ]

@@ -1,0 +1,6 @@
+{%- comment -%}
+  Format an amount stored in cents into the active store currency.
+  Usage: {% render 'price', cents: 1995 %}
+  Respects Shopify Markets — auto-converts when a customer switches market.
+{%- endcomment -%}
+{%- if cents -%}{{ cents | money }}{%- endif -%}

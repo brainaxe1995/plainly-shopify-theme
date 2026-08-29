@@ -3,14 +3,20 @@
     "brand_name": "Plainly",
     "founder_name": "Daniel Vos",
     "founder_role": "Our specialist. He decides what goes in the box and checks every batch.",
-    "support_email": "daniel@plainly.co"
+    "support_email": "daniel@plainly.co",
+    "starter_price_cents": 1995,
+    "free_shipping_over_cents": 9900,
+    "ship_fee_cents": 795
   },
   "presets": {
     "Default": {
       "brand_name": "Plainly",
       "founder_name": "Daniel Vos",
       "founder_role": "Our specialist. He decides what goes in the box and checks every batch.",
-      "support_email": "daniel@plainly.co"
+      "support_email": "daniel@plainly.co",
+      "starter_price_cents": 1995,
+      "free_shipping_over_cents": 9900,
+      "ship_fee_cents": 795
     }
   }
 }

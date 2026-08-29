@@ -61,6 +61,29 @@ Create Shopify pages with these handles (template auto-picks `page`):
 
 Paste your legal copy into the page body — theme renders it in the same column layout as the React source.
 
+## Currency
+
+Fully dynamic. The theme reads all prices via Shopify's `money` filter, so whatever currency the store is set to (AED, USD, GBP, EUR, ...) renders across the entire theme — including hero copy, CTA buttons, savings badges, per-day calculations, shipping messages, sticky buy bar.
+
+Multi-currency via **Shopify Markets** works out of the box: prices auto-convert when a customer switches market.
+
+### Where the amounts come from
+
+- **Product prices** — Shopify product/variant prices (imported via `plainly-products.csv`)
+- **Starter price, free-shipping threshold, ship fee** — theme customizer → **Pricing & shipping** section, stored as *cents* (smallest unit of store currency)
+
+### Editing prices
+
+Admin → **Online Store → Themes → Customize → Theme settings → Pricing & shipping**:
+
+| Field | Default | Meaning |
+|-------|---------|---------|
+| Starter price (cents) | 1995 | Renders as $19.95 / AED 19.95 / £19.95 / etc. |
+| Free shipping threshold (cents) | 9900 | Renders as $99.00 / AED 99.00 / £99.00 / etc. |
+| Shipping fee (cents) | 795 | Renders as $7.95 / AED 7.95 / £7.95 / etc. |
+
+If your store currency isn't a 2-decimal currency (e.g. JPY), Shopify's money filter handles that too.
+
 ## Tailwind
 
 Tailwind is loaded via the Play CDN (`https://cdn.tailwindcss.com`) in `layout/theme.liquid` for zero-build convenience. For production polish, compile once locally and swap the `<script>` line for a compiled `assets/tailwind.css` link.
