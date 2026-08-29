@@ -1,3 +1,4 @@
+{%- assign buy_url = section.settings.cta_url | default: '/pages/buy' -%}
 <section class="border-y border-border bg-paper">
   <div class="page-grid section-y">
     <div class="text-column">
@@ -16,7 +17,7 @@
         {% endfor %}
       </div>
       <div class="mt-10">
-        <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
+        <a href="{{ buy_url }}" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
       </div>
     </div>
   </div>
@@ -26,76 +27,26 @@
 {
   "name": "Home how-it-works",
   "settings": [
-    {
-      "type": "text",
-      "id": "cta_label",
-      "default": "Pick my pack",
-      "label": "Cta label"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "Cta url"
-    }
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Pick my pack" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL (default: /pages/buy)" }
   ],
   "blocks": [
     {
       "type": "step",
       "name": "Step",
       "settings": [
-        {
-          "type": "text",
-          "id": "n",
-          "label": "Number",
-          "default": "01"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "body",
-          "label": "Body"
-        }
+        { "type": "text", "id": "n", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
       ]
     }
   ],
   "default": {
     "blocks": [
-      {
-        "type": "step",
-        "settings": {
-          "n": "01",
-          "title": "You order tonight",
-          "body": "It takes one minute. Start with one week. Or take a bigger box if you know one week is not enough."
-        }
-      },
-      {
-        "type": "step",
-        "settings": {
-          "n": "02",
-          "title": "It arrives in about 5 days",
-          "body": "A plain box. No name on it. Nothing on your bank statement that tells anyone what it is."
-        }
-      },
-      {
-        "type": "step",
-        "settings": {
-          "n": "03",
-          "title": "You take one a day",
-          "body": "One tablet a day. That is the whole thing you have to do. No app, no course, no journal, no coach."
-        }
-      },
-      {
-        "type": "step",
-        "settings": {
-          "n": "04",
-          "title": "We check in with you",
-          "body": "One short message from us. A real person reads your answer. If it is not helping, we fix it or you get your money back."
-        }
-      }
+      { "type": "step", "settings": { "n": "01", "title": "You order tonight", "body": "It takes one minute. Start with one week. Or take a bigger box if you know one week is not enough." } },
+      { "type": "step", "settings": { "n": "02", "title": "It arrives in about 5 days", "body": "A plain box. No name on it. Nothing on your bank statement that tells anyone what it is." } },
+      { "type": "step", "settings": { "n": "03", "title": "You take one a day", "body": "One tablet a day. That is the whole thing you have to do. No app, no course, no journal, no coach." } },
+      { "type": "step", "settings": { "n": "04", "title": "We check in with you", "body": "One short message from us. A real person reads your answer. If it is not helping, we fix it or you get your money back." } }
     ]
   }
 }

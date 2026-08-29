@@ -1,10 +1,12 @@
+{%- assign img_url = '' -%}
+{%- if section.settings.image -%}
+  {%- assign img_url = section.settings.image | image_url: width: 1200 -%}
+{%- else -%}
+  {%- assign img_url = 'ad-427.jpg' | asset_url -%}
+{%- endif -%}
 <section class="page-grid section-y">
   <div class="text-column">
-    {% if section.settings.image %}
-      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
-    {% else %}
-      <div class="photo-slot" style="aspect-ratio: 1 / 1;" role="img" aria-label="{{ section.settings.image_alt }}"><span>{{ section.settings.image_alt }}</span></div>
-    {% endif %}
+    <img src="{{ img_url }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
     <p class="eyebrow mt-10">What happens after you click</p>
     <h2 class="heading mt-4">Three steps. You only do the first one.</h2>
     <div class="mt-10">
@@ -25,68 +27,25 @@
 {
   "name": "Product how-it-works",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "default": "Photo \u00b7 hero shot \u00b7 the pack",
-      "label": "Image alt"
-    }
+    { "type": "image_picker", "id": "image", "label": "Pack photo (falls back to bundled ad-427.jpg)" },
+    { "type": "text", "id": "image_alt", "label": "Image alt", "default": "Photo · hero shot · the pack" }
   ],
   "blocks": [
     {
       "type": "step",
       "name": "Step",
       "settings": [
-        {
-          "type": "text",
-          "id": "n",
-          "default": "1",
-          "label": "N"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "textarea",
-          "id": "body",
-          "label": "Body"
-        }
+        { "type": "text", "id": "n", "label": "Number", "default": "1" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
       ]
     }
   ],
   "default": {
     "blocks": [
-      {
-        "type": "step",
-        "settings": {
-          "n": "1",
-          "title": "You order tonight",
-          "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger."
-        }
-      },
-      {
-        "type": "step",
-        "settings": {
-          "n": "2",
-          "title": "The box lands in about 5 days",
-          "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it."
-        }
-      },
-      {
-        "type": "step",
-        "settings": {
-          "n": "3",
-          "title": "It comes back every 30 days, until you say stop",
-          "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email."
-        }
-      }
+      { "type": "step", "settings": { "n": "1", "title": "You order tonight", "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger." } },
+      { "type": "step", "settings": { "n": "2", "title": "The box lands in about 5 days", "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it." } },
+      { "type": "step", "settings": { "n": "3", "title": "It comes back every 30 days, until you say stop", "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email." } }
     ]
   }
 }

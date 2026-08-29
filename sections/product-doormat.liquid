@@ -1,11 +1,13 @@
+{%- assign img_url = '' -%}
+{%- if section.settings.image -%}
+  {%- assign img_url = section.settings.image | image_url: width: 1200 -%}
+{%- else -%}
+  {%- assign img_url = 'ad-436.jpg' | asset_url -%}
+{%- endif -%}
 <section class="border-y border-border bg-paper">
   <div class="page-grid section-y">
     <div class="text-column">
-      {% if section.settings.image %}
-        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
-      {% else %}
-        <div class="photo-slot" style="aspect-ratio: 1 / 1;" role="img" aria-label="{{ section.settings.image_alt }}"><span>{{ section.settings.image_alt }}</span></div>
-      {% endif %}
+      <img src="{{ img_url }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
       <p class="eyebrow mt-10">What arrives at your door</p>
       <h2 class="heading mt-4">Your girlfriend could open it. She'd learn nothing.</h2>
       <p class="measure mt-4 text-muted-foreground">One plain box. No logo, no window, no product name, no branded tape. Whoever takes it in learns nothing. Your statement shows a normal company name.</p>
@@ -17,22 +19,8 @@
 {
   "name": "Product doormat",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "default": "Photo \u00b7 the plain outer box, as it lands",
-      "label": "Image alt"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Product doormat"
-    }
+    { "type": "image_picker", "id": "image", "label": "Doormat photo (falls back to bundled ad-436.jpg)" },
+    { "type": "text", "id": "image_alt", "label": "Image alt", "default": "Photo · the plain outer box, as it lands" }
   ]
 }
 {% endschema %}

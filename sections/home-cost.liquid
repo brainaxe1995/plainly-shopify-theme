@@ -1,4 +1,5 @@
 {%- assign starter = settings.starter_price_cents | money -%}
+{%- assign buy_url = section.settings.cta_url | default: '/pages/buy' -%}
 <section class="border-y border-border bg-paper">
   <div class="page-grid section-y">
     <div class="text-column text-center">
@@ -20,7 +21,7 @@
       </div>
     </div>
     <div class="mt-12 text-center">
-      <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink">{{ section.settings.cta_label_pre }} {{ starter }}</a>
+      <a href="{{ buy_url }}" class="btn-base btn-ink">{{ section.settings.cta_label_pre }} {{ starter }}</a>
     </div>
   </div>
 </section>
@@ -29,28 +30,9 @@
 {
   "name": "Home cost",
   "settings": [
-    {
-      "type": "text",
-      "id": "per_day_note",
-      "label": "Per-day cost note (numeral)",
-      "default": "Low"
-    },
-    {
-      "type": "text",
-      "id": "cta_label_pre",
-      "label": "CTA \u00b7 text before price",
-      "default": "Stop the next thirty for"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "Cta url"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Home cost"
-    }
+    { "type": "text", "id": "per_day_note", "label": "Per-day cost note (numeral)", "default": "Low" },
+    { "type": "text", "id": "cta_label_pre", "label": "CTA · text before price", "default": "Stop the next thirty for" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL (default: /pages/buy)" }
   ]
 }
 {% endschema %}
