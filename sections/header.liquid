@@ -1,12 +1,5 @@
 {%- assign buy_url = section.settings.product_url | default: '/pages/buy' -%}
-{%- assign read_url = section.settings.read_url -%}
-{%- if read_url == blank -%}
-  {%- if blogs.news.articles_count > 0 -%}
-    {%- assign read_url = blogs.news.url -%}
-  {%- else -%}
-    {%- assign read_url = '/blogs/news' -%}
-  {%- endif -%}
-{%- endif -%}
+{%- assign read_url = section.settings.read_url | default: '/pages/read' -%}
 <header class="header-sticky">
   <div class="page-grid flex h-16 items-center justify-between gap-4">
     <a href="{{ routes.root_url }}" class="font-display text-[22px] tracking-[0.01em]">

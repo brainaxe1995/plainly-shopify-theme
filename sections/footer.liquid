@@ -1,12 +1,5 @@
 {%- assign buy_url = section.settings.product_url | default: '/pages/buy' -%}
-{%- assign read_url = section.settings.read_url -%}
-{%- if read_url == blank -%}
-  {%- if blogs.news.articles_count > 0 -%}
-    {%- assign read_url = blogs.news.url -%}
-  {%- else -%}
-    {%- assign read_url = '/blogs/news' -%}
-  {%- endif -%}
-{%- endif -%}
+{%- assign read_url = section.settings.read_url | default: '/pages/read' -%}
 <footer class="border-t border-border bg-paper">
   <div class="page-grid section-y">
     <div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
