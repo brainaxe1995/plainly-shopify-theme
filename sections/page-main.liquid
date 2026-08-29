@@ -1,0 +1,16 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <p class="eyebrow">{{ page.metafields.plainly.eyebrow | default: 'Plainly' }}</p>
+    <h1 class="heading mt-4">{{ page.title }}</h1>
+    <div class="rule-hard mt-8 space-y-4 pt-8 text-muted-foreground">
+      {{ page.content }}
+    </div>
+    <p class="mt-12 text-[14px] text-muted-foreground">
+      Placeholder text. Have this reviewed against the trading entity, registered address and local law before the store goes live.
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Page main", "settings": [] }
+{% endschema %}

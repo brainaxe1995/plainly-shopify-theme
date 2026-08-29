@@ -1,0 +1,25 @@
+<section class="page-grid section-y">
+  <div class="text-column text-center">
+    <p class="eyebrow">Every plan</p>
+    <h1 class="heading mt-4">{{ collection.title }}</h1>
+    {% if collection.description != blank %}<p class="mt-4 text-muted-foreground">{{ collection.description }}</p>{% endif %}
+  </div>
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {% for product in collection.products %}
+      <a href="{{ product.url }}" class="card-plain block overflow-hidden transition-colors hover:border-forest">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title | escape }}" class="w-full object-cover" style="aspect-ratio: 4 / 3;" loading="lazy">
+        {% endif %}
+        <div class="p-5">
+          <p class="subheading">{{ product.title }}</p>
+          <p class="mt-2 text-[15px] text-muted-foreground">{{ product.metafields.plainly.tablets | default: '' }}{% if product.metafields.plainly.tablets %} tablets · one per night{% endif %}</p>
+          <p class="mt-3 text-[22px] font-semibold text-forest tabular-nums">{{ product.price | money }}</p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collection main", "settings": [] }
+{% endschema %}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0C0D0C">
+  <link rel="icon" type="image/x-icon" href="{{ 'favicon.ico' | asset_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--color-background)',
+            foreground: 'var(--color-foreground)',
+            muted: {
+              DEFAULT: 'var(--color-muted)',
+              foreground: 'var(--color-muted-foreground)'
+            },
+            card: 'var(--color-card)',
+            border: 'var(--color-border)',
+            forest: {
+              DEFAULT: 'var(--color-forest)',
+              foreground: 'var(--color-forest-foreground)'
+            },
+            moss: 'var(--color-moss)',
+            lime: {
+              DEFAULT: 'var(--color-lime)',
+              foreground: 'var(--color-lime-foreground)'
+            },
+            mint: 'var(--color-mint)',
+            paper: 'var(--color-paper)',
+            ink: 'var(--color-ink)'
+          },
+          fontFamily: {
+            sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Anton', 'Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+  <title>
+    {%- if template contains 'index' -%}
+      {{ page_title }}
+    {%- else -%}
+      {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    {%- endif -%}
+  </title>
+  {% if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  {{ content_for_header }}
+</head>
+<body class="template-{{ template.name }}">
+  {% section 'header' %}
+
+  <main id="MainContent" role="main" class="flex-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

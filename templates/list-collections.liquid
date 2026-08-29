@@ -1,0 +1,10 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <h1 class="heading">Collections</h1>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+      {% for coll in collections %}
+        <li><a href="{{ coll.url }}" class="subheading hover:underline">{{ coll.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

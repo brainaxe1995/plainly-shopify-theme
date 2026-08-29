@@ -1,0 +1,19 @@
+<section class="page-grid section-y text-center">
+  <div class="text-column">
+    <h2 class="heading">You already know how tonight ends. Change it for $19.95.</h2>
+    <p class="mt-3 text-muted-foreground">From $19.95. Free shipping over $99. 60 nights or your money back. Stop any time.</p>
+    <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink mt-6">{{ section.settings.cta_label }}</a>
+    <p class="mt-4 text-[14px] text-muted-foreground">Or write to us first at {{ settings.support_email }}. We answer.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home final CTA",
+  "settings": [
+    { "type": "text", "id": "cta_label", "default": "Start tonight" },
+    { "type": "url", "id": "cta_url" }
+  ],
+  "presets": [ { "name": "Home final CTA" } ]
+}
+{% endschema %}

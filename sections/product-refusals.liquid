@@ -1,0 +1,33 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <p class="eyebrow">Read this before you buy from anyone else</p>
+    <h2 class="heading mt-4 mb-2">What we will never do to you</h2>
+    <ul class="mt-6 space-y-0">
+      {% for block in section.blocks %}
+        <li class="flex items-start gap-4 border-b border-border py-5 last:border-b-0">
+          <span aria-hidden="true" class="text-[20px] leading-6 font-semibold text-forest">&times;</span>
+          <span class="text-[18px] font-medium">{{ block.settings.text }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product refusals",
+  "settings": [],
+  "blocks": [
+    { "type": "refusal", "name": "Refusal", "settings": [ { "type": "text", "id": "text", "label": "Refusal line" } ] }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "refusal", "settings": { "text": "No app, no login, no streak counter telling you that you failed." } },
+      { "type": "refusal", "settings": { "text": "No 90 day course you have to finish before you get anything." } },
+      { "type": "refusal", "settings": { "text": "No extra product pushed on you after you buy." } },
+      { "type": "refusal", "settings": { "text": "No calling anyone to stop your deliveries. One click and it stops." } }
+    ]
+  },
+  "presets": [ { "name": "Product refusals" } ]
+}
+{% endschema %}

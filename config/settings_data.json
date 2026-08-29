@@ -1,0 +1,16 @@
+{
+  "current": {
+    "brand_name": "Plainly",
+    "founder_name": "Daniel Vos",
+    "founder_role": "Our specialist. He decides what goes in the box and checks every batch.",
+    "support_email": "daniel@plainly.co"
+  },
+  "presets": {
+    "Default": {
+      "brand_name": "Plainly",
+      "founder_name": "Daniel Vos",
+      "founder_role": "Our specialist. He decides what goes in the box and checks every batch.",
+      "support_email": "daniel@plainly.co"
+    }
+  }
+}

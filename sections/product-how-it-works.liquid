@@ -1,0 +1,51 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+    {% else %}
+      <div class="photo-slot" style="aspect-ratio: 1 / 1;" role="img" aria-label="{{ section.settings.image_alt }}"><span>{{ section.settings.image_alt }}</span></div>
+    {% endif %}
+    <p class="eyebrow mt-10">What happens after you click</p>
+    <h2 class="heading mt-4">Three steps. You only do the first one.</h2>
+    <div class="mt-10">
+      {% for block in section.blocks %}
+        <div class="flex gap-6 border-b border-border py-6 last:border-b-0">
+          <span class="font-display text-[34px] leading-none text-forest tabular-nums">{{ block.settings.n }}</span>
+          <div>
+            <h3 class="subheading">{{ block.settings.title }}</h3>
+            <p class="mt-2 text-muted-foreground">{{ block.settings.body }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product how-it-works",
+  "settings": [
+    { "type": "image_picker", "id": "image" },
+    { "type": "text", "id": "image_alt", "default": "Photo · hero shot · the pack" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "n", "default": "1" },
+        { "type": "text", "id": "title" },
+        { "type": "textarea", "id": "body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "step", "settings": { "n": "1", "title": "You order tonight", "body": "That is the last decision you make. No quiz, no form, no call where you explain yourself to a stranger." } },
+      { "type": "step", "settings": { "n": "2", "title": "The box lands in about 5 days", "body": "Your tablets, and nothing else. One a day, exactly what our specialist recommends. Every box is checked before it ships. Plain outer box, nothing printed on it." } },
+      { "type": "step", "settings": { "n": "3", "title": "It comes back every 30 days, until you say stop", "body": "You never run out, so you never get the night where you have nothing. Cancel in one click, any time. A real person reads your email." } }
+    ]
+  },
+  "presets": [ { "name": "Product how-it-works" } ]
+}
+{% endschema %}

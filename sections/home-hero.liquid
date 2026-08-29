@@ -1,0 +1,55 @@
+<section class="page-grid section-y">
+  <div class="text-column text-center">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="display mt-5">
+      {{ section.settings.headline_start }}
+      <span class="text-forest">{{ section.settings.headline_accent }}</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-[52ch] text-[18px] text-muted-foreground">{{ section.settings.subline_1 }}</p>
+    <p class="mx-auto mt-4 max-w-[52ch] text-[17px] font-semibold">{{ section.settings.subline_2 }}</p>
+    <p class="mx-auto mt-4 max-w-[52ch] text-muted-foreground">{{ section.settings.subline_3 }}</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="{{ section.settings.cta_primary_url }}" class="btn-base btn-ink">{{ section.settings.cta_primary_label }}</a>
+      <a href="{{ section.settings.cta_secondary_url }}" class="btn-base btn-outline">{{ section.settings.cta_secondary_label }}</a>
+    </div>
+    <p class="mt-5 text-[13px] font-semibold tracking-[0.06em] text-muted-foreground uppercase">{{ section.settings.trust_line }}</p>
+  </div>
+  <ul class="mx-auto mt-14 grid max-w-3xl gap-y-3 border-t border-border pt-8 text-center text-[13px] font-semibold tracking-[0.06em] text-muted-foreground uppercase sm:grid-cols-2 lg:grid-cols-4">
+    {% for block in section.blocks %}
+      {% if block.type == 'trust_pill' %}
+        <li>{{ block.settings.text }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "Home hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "default": "Read this before tonight" },
+    { "type": "text", "id": "headline_start", "default": "I watched porn every night for a year." },
+    { "type": "text", "id": "headline_accent", "default": "Then I found out why I could not stop." },
+    { "type": "textarea", "id": "subline_1", "default": "It was never willpower. Every night at 1am the same thing happened, and nobody could tell me why. So I worked it out. And what I found will annoy you, because it is so simple." },
+    { "type": "textarea", "id": "subline_2", "default": "Some men just want to stop masturbating. That is exactly who this is for. One tablet a day, and the nights get easier." },
+    { "type": "textarea", "id": "subline_3", "default": "So our specialist put together one daily tablet from simple ingredients, and that is what we ship. One a day. No app, no coach, no $2000 course. It starts at $19.95. Less than the nights you are losing." },
+    { "type": "text", "id": "cta_primary_label", "default": "Start tonight for $19.95" },
+    { "type": "url", "id": "cta_primary_url" },
+    { "type": "text", "id": "cta_secondary_label", "default": "The 6 reasons you always go back" },
+    { "type": "url", "id": "cta_secondary_url" },
+    { "type": "text", "id": "trust_line", "default": "60 nights or your money back · stop in one click" }
+  ],
+  "blocks": [
+    { "type": "trust_pill", "name": "Trust pill", "settings": [ { "type": "text", "id": "text", "label": "Text" } ] }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "trust_pill", "settings": { "text": "Plain box, no logo" } },
+      { "type": "trust_pill", "settings": { "text": "Nothing on your bank statement" } },
+      { "type": "trust_pill", "settings": { "text": "Stop any time" } },
+      { "type": "trust_pill", "settings": { "text": "A real person answers you" } }
+    ]
+  },
+  "presets": [ { "name": "Home hero" } ]
+}
+{% endschema %}

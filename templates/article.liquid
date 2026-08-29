@@ -1,0 +1,11 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <p class="eyebrow">{{ blog.title }}</p>
+    <h1 class="display mt-4">{{ article.title }}</h1>
+    <p class="mt-4 text-[14px] text-muted-foreground">{{ article.published_at | date: '%B %d, %Y' }} · {{ article.author }}</p>
+    <div class="rule-hard mt-8 pt-8 space-y-4 text-[17px]">
+      {{ article.content }}
+    </div>
+  </div>
+</section>
+{% render 'support-note' %}

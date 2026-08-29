@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "hero": { "type": "home-hero", "settings": {} },
+    "cost": { "type": "home-cost", "settings": {} },
+    "story": { "type": "home-story", "settings": { "image_alt": "Photo · 1am · the night this is about" } },
+    "how": { "type": "home-how-it-works", "settings": {} },
+    "doormat": { "type": "home-doormat", "settings": {} },
+    "guarantee": { "type": "home-guarantee", "settings": {} },
+    "faq": { "type": "home-faq", "settings": {} },
+    "support": { "type": "home-support-note", "settings": {} },
+    "final": { "type": "home-final-cta", "settings": {} }
+  },
+  "order": ["hero", "cost", "story", "how", "doormat", "guarantee", "faq", "support", "final"]
+}

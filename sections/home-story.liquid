@@ -1,0 +1,34 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image_alt }}" class="mb-10 w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+    {% else %}
+      <div class="photo-slot mb-10" style="aspect-ratio: 1 / 1;" role="img" aria-label="{{ section.settings.image_alt }}">
+        <span>{{ section.settings.image_alt }}</span>
+      </div>
+    {% endif %}
+    <p class="eyebrow">The part nobody posts about</p>
+    <h2 class="heading mt-4">Every night for a year. Sometimes twice. I told no one.</h2>
+    <div class="mt-6 space-y-4">
+      <p>Porn, most nights, sometimes twice. I told myself I would stop. I stopped for four days, then a boring night came and I was back.</p>
+      <p>It made me tired in the morning. I was late. I felt bad about myself all day. And I told nobody, because who do you tell?</p>
+      <p>Everything I found online was a man shouting at me about discipline, or a $2000 course with a timer on the page. None of it was written by someone who had been where I was.</p>
+      <p>So I got help from someone who actually knows this stuff. He put together one daily tablet from simple ingredients. That is all we send. It is what our specialist recommends, in a plain box. If it does nothing for you, you get your money back.</p>
+    </div>
+    <div class="rule-hard mt-8 pt-6">
+      {% assign with_note = false %}
+      {% render 'advisor-card', with_note: with_note %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home story",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "1am photo" },
+    { "type": "text", "id": "image_alt", "label": "Image alt", "default": "Photo · 1am · the night this is about" }
+  ],
+  "presets": [ { "name": "Home story" } ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<header class="header-sticky">
+  <div class="page-grid flex h-16 items-center justify-between gap-4">
+    <a href="{{ routes.root_url }}" class="font-display text-[22px] tracking-[0.01em]">
+      {{ section.settings.brand_name | default: shop.name }}
+    </a>
+    <nav aria-label="Main" class="flex items-center gap-6">
+      <a href="{{ section.settings.read_url | default: '/blogs/read' }}" class="hidden text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground sm:inline">
+        Read this first
+      </a>
+      <a href="{{ section.settings.product_url | default: '/collections/all' }}" class="text-[13px] font-semibold tracking-[0.08em] text-muted-foreground uppercase hover:text-foreground">
+        What we send
+      </a>
+      <a href="{{ section.settings.product_url | default: '/collections/all' }}" class="hidden rounded-lg bg-forest px-4 py-2 text-[13px] font-semibold tracking-[0.04em] text-forest-foreground uppercase hover:bg-moss md:inline">
+        Start · {{ section.settings.start_price | default: '$19.95' }}
+      </a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Plainly" },
+    { "type": "url", "id": "read_url", "label": "Read URL" },
+    { "type": "url", "id": "product_url", "label": "Product URL" },
+    { "type": "text", "id": "start_price", "label": "Start price label", "default": "$19.95" }
+  ]
+}
+{% endschema %}

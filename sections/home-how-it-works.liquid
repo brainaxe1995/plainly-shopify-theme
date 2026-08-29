@@ -1,0 +1,53 @@
+<section class="border-y border-border bg-paper">
+  <div class="page-grid section-y">
+    <div class="text-column">
+      <p class="eyebrow">How it works</p>
+      <h2 class="heading mt-4">Four steps. All of them easy.</h2>
+      <p class="measure mt-4 text-muted-foreground">No app. No login. No course to finish. No calls with a coach.</p>
+      <div class="mt-10">
+        {% for block in section.blocks %}
+          <div class="flex gap-6 border-b border-border py-6 last:border-b-0">
+            <span class="font-display text-[34px] leading-none text-forest tabular-nums">{{ block.settings.n }}</span>
+            <div>
+              <h3 class="subheading">{{ block.settings.title }}</h3>
+              <p class="mt-2 text-muted-foreground">{{ block.settings.body }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="mt-10">
+        <a href="{{ section.settings.cta_url }}" class="btn-base btn-ink">{{ section.settings.cta_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home how-it-works",
+  "settings": [
+    { "type": "text", "id": "cta_label", "default": "Pick my pack" },
+    { "type": "url", "id": "cta_url" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "n", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "step", "settings": { "n": "01", "title": "You order tonight", "body": "It takes one minute. Start with one week. Or take a bigger box if you know one week is not enough." } },
+      { "type": "step", "settings": { "n": "02", "title": "It arrives in about 5 days", "body": "A plain box. No name on it. Nothing on your bank statement that tells anyone what it is." } },
+      { "type": "step", "settings": { "n": "03", "title": "You take one a day", "body": "One tablet a day. That is the whole thing you have to do. No app, no course, no journal, no coach." } },
+      { "type": "step", "settings": { "n": "04", "title": "We check in with you", "body": "One short message from us. A real person reads your answer. If it is not helping, we fix it or you get your money back." } }
+    ]
+  },
+  "presets": [ { "name": "Home how-it-works" } ]
+}
+{% endschema %}

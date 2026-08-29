@@ -1,0 +1,73 @@
+<footer class="border-t border-border bg-paper">
+  <div class="page-grid section-y">
+    <div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+      <div>
+        <p class="font-display text-[22px]">{{ section.settings.brand_name | default: shop.name }}</p>
+        <p class="measure mt-3 text-[15px] text-muted-foreground">
+          {{ section.settings.disclaimer }}
+        </p>
+        <p class="mt-4 text-[15px] text-muted-foreground">
+          Questions any time at
+          <a class="underline underline-offset-4" href="mailto:{{ section.settings.support_email }}">
+            {{ section.settings.support_email }}
+          </a>
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <p class="eyebrow">Pages</p>
+          <ul class="mt-3 space-y-2 text-[15px]">
+            <li><a href="{{ routes.root_url }}" class="text-muted-foreground hover:text-foreground">Home</a></li>
+            <li><a href="{{ section.settings.read_url | default: '/blogs/read' }}" class="text-muted-foreground hover:text-foreground">Read this first</a></li>
+            <li><a href="{{ section.settings.product_url | default: '/collections/all' }}" class="text-muted-foreground hover:text-foreground">What we send</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow">Legal</p>
+          <ul class="mt-3 space-y-2 text-[15px]">
+            {% for block in section.blocks %}
+              {% if block.type == 'legal_link' %}
+                <li><a href="{{ block.settings.url }}" class="text-muted-foreground hover:text-foreground">{{ block.settings.label }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="mt-12 border-t border-border pt-6 text-[13px] text-muted-foreground">
+      &copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: shop.name }}. Plain packaging, neutral billing descriptor, no product name in email subject lines.
+    </p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Plainly" },
+    { "type": "textarea", "id": "disclaimer", "label": "Health disclaimer", "default": "What we send is not a medicine and it does not treat or cure anything. If a habit is affecting your health, your work or your mood in a way that worries you, talk to a doctor or a therapist as well." },
+    { "type": "text", "id": "support_email", "label": "Support email", "default": "daniel@plainly.co" },
+    { "type": "url", "id": "read_url", "label": "Read URL" },
+    { "type": "url", "id": "product_url", "label": "Product URL" }
+  ],
+  "blocks": [
+    {
+      "type": "legal_link",
+      "name": "Legal link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "legal_link", "settings": { "label": "Privacy", "url": "/pages/privacy" } },
+      { "type": "legal_link", "settings": { "label": "Terms", "url": "/pages/terms" } },
+      { "type": "legal_link", "settings": { "label": "Refunds", "url": "/pages/refunds" } },
+      { "type": "legal_link", "settings": { "label": "Shipping", "url": "/pages/shipping" } },
+      { "type": "legal_link", "settings": { "label": "Imprint", "url": "/pages/imprint" } }
+    ]
+  }
+}
+{% endschema %}

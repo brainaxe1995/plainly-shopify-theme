@@ -1,0 +1,25 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    {% if section.settings.image %}
+      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image_alt }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+    {% else %}
+      <div class="photo-slot" style="aspect-ratio: 1 / 1;" role="img" aria-label="{{ section.settings.image_alt }}">
+        <span>{{ section.settings.image_alt }}</span>
+      </div>
+    {% endif %}
+    <p class="eyebrow mt-10">What arrives at your door</p>
+    <h2 class="heading mt-4">Your flatmate could open it. They would learn nothing.</h2>
+    <p class="measure mt-4 text-muted-foreground">No logo. No window. No product name. It looks like any other parcel. If your girlfriend, your mother or your flatmate takes it in, they learn nothing.</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home doormat",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Doormat photo" },
+    { "type": "text", "id": "image_alt", "label": "Alt", "default": "Photo · the plain outer box on a doormat" }
+  ],
+  "presets": [ { "name": "Home doormat" } ]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+{% comment %} Params: with_note (bool, default true) {% endcomment %}
+<div class="text-foreground">
+  <p class="eyebrow">Who is behind this</p>
+  {% if with_note != false %}
+    <p class="measure mt-3 text-[17px]">
+      Every box is checked before it ships. If you write to us after it arrives and tell us it is not working, we would rather sort it out than keep your money.
+    </p>
+  {% endif %}
+  <div class="mt-5 flex items-center gap-3 border-t border-border pt-5">
+    {% if settings.founder_image %}
+      <img src="{{ settings.founder_image | image_url: width: 96 }}" alt="{{ settings.founder_name }}" width="48" height="48" class="size-12 shrink-0 rounded-full border border-border object-cover">
+    {% else %}
+      <span aria-hidden="true" class="photo-slot size-12 shrink-0 rounded-full text-[9px] tracking-[0.1em]">Photo</span>
+    {% endif %}
+    <div>
+      <p class="text-[15px] font-semibold">{{ settings.founder_name | default: 'Daniel Vos' }}</p>
+      <p class="text-[14px] text-muted-foreground">{{ settings.founder_role | default: 'Our specialist. He decides what goes in the box and checks every batch.' }}</p>
+    </div>
+  </div>
+  <p class="mt-4 text-[14px] text-muted-foreground">
+    Write to us any time at
+    <a class="underline underline-offset-4" href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a>
+  </p>
+</div>

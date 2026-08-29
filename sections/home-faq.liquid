@@ -1,0 +1,48 @@
+<section class="page-grid section-y">
+  <div class="text-column">
+    <p class="eyebrow">Straight answers</p>
+    <h2 class="heading mt-4 mb-8">Questions men ask us</h2>
+    {% assign faq_items = '' | split: '' %}
+    <div class="rule-hard">
+      {% for block in section.blocks %}
+        <details {% if forloop.first %}open{% endif %} class="group border-b border-foreground/15">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[19px] font-extrabold tracking-[-0.01em]">
+            <span>{{ block.settings.q }}</span>
+            <span aria-hidden="true" class="mt-1 text-[22px] leading-none font-extrabold text-moss select-none">
+              <span class="group-open:hidden">+</span>
+              <span class="hidden group-open:inline">&minus;</span>
+            </span>
+          </summary>
+          <p class="measure pb-6 text-muted-foreground">{{ block.settings.a }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home FAQ",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Q&A",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Question" },
+        { "type": "textarea", "id": "a", "label": "Answer" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "qa", "settings": { "q": "Will anyone know what I ordered?", "a": "No. The box is plain, with no logo. Your bank statement shows a normal company name. Nobody can tell." } },
+      { "type": "qa", "settings": { "q": "How fast does it come?", "a": "About 5 days. You get a tracking link when it is sent." } },
+      { "type": "qa", "settings": { "q": "Is this a medicine?", "a": "No. It is not a medicine and it does not cure anything. If you are worried about your health or you feel out of control, talk to a doctor." } },
+      { "type": "qa", "settings": { "q": "Can I stop the monthly delivery?", "a": "Yes. One click, any time. No phone call, no form, no waiting." } },
+      { "type": "qa", "settings": { "q": "What if it does nothing for me?", "a": "You have 60 nights to find out. If nothing changed, send us one line and you get your money back." } }
+    ]
+  },
+  "presets": [ { "name": "Home FAQ" } ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Plainly",
+    "theme_version": "1.0.0",
+    "theme_author": "Plainly",
+    "theme_documentation_url": "https://github.com/",
+    "theme_support_url": "mailto:daniel@plainly.co"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "text", "id": "brand_name", "label": "Brand name", "default": "Plainly" },
+      { "type": "text", "id": "founder_name", "label": "Founder name", "default": "Daniel Vos" },
+      { "type": "textarea", "id": "founder_role", "label": "Founder role", "default": "Our specialist. He decides what goes in the box and checks every batch." },
+      { "type": "image_picker", "id": "founder_image", "label": "Founder photo (square)" },
+      { "type": "text", "id": "support_email", "label": "Support email", "default": "daniel@plainly.co" }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "header", "content": "Palette is baked into theme.css. Overrides for future variants." },
+      { "type": "color", "id": "accent_override", "label": "Accent override (leave empty for default acid green)" }
+    ]
+  }
+]

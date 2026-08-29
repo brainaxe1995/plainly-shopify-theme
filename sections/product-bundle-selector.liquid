@@ -1,0 +1,155 @@
+<section class="page-grid section-y">
+  {% assign bundle_collection = collections[section.settings.bundle_collection] %}
+  {% assign packs = bundle_collection.products | sort: 'price' %}
+  {% assign default_pack = packs[2] | default: packs[0] %}
+  {% assign default_shipping_msg = 'Free shipping, because this order is over $99.' %}
+  {% if default_pack.price_min < section.settings.free_over | times: 100 %}
+    {% assign default_shipping_msg = '$' | append: section.settings.ship_fee | append: ' shipping added at checkout. Free over $' | append: section.settings.free_over | append: '.' %}
+  {% endif %}
+
+  <div class="buying-column" data-bundle-selector
+       data-currency="$"
+       data-free-over="{{ section.settings.free_over }}"
+       data-ship-fee="{{ section.settings.ship_fee }}">
+    <p class="eyebrow text-center">Step 1 · Pick how long you want to be covered</p>
+
+    <div class="mt-6 space-y-4">
+
+      <div class="card-plain p-5 md:p-6">
+        <span class="inline-flex w-fit items-center rounded-md bg-mint px-3 py-1 text-[12px] font-semibold tracking-[0.14em] whitespace-nowrap text-forest uppercase">
+          Made and checked by us
+        </span>
+        <ul class="mt-3 space-y-1.5 text-[16px]">
+          <li>Same mix every time, packed by hand.</li>
+          <li>Plain outer box. Nothing printed on it.</li>
+          <li>Nothing on your statement that gives it away.</li>
+          <li>Starts at $19.95 a week. Cancel in one click.</li>
+        </ul>
+        <p class="mt-4 border-t border-border pt-3 text-[14px] text-muted-foreground">
+          {{ settings.founder_name | default: 'Daniel Vos' }}, our specialist, decides what goes in the box and checks every batch before it ships.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-forest bg-mint p-5 transition-colors md:p-6">
+        <span class="inline-flex w-fit items-center rounded-full bg-forest px-3 py-1 text-[11px] font-semibold tracking-[0.14em] whitespace-nowrap text-forest-foreground uppercase">
+          Members only · no one-off boxes
+        </span>
+        <p class="mt-3 text-[20px] leading-tight font-semibold">
+          This only works if you never run out. So we send it again every 30 days.
+        </p>
+        <p class="mt-1 text-[15px] text-muted-foreground">
+          Same price every time. Cancel in one click, tonight if you want. No calls, no forms, nobody talking you out of it.
+        </p>
+
+        <ul class="mt-5 flex flex-wrap gap-2">
+          <li class="rounded-full border border-border bg-background px-3 py-1.5 text-[13px] font-medium text-muted-foreground">Never run out</li>
+          <li class="rounded-full border border-border bg-background px-3 py-1.5 text-[13px] font-medium text-muted-foreground">Free plain shipping</li>
+          <li class="rounded-full border border-border bg-background px-3 py-1.5 text-[13px] font-medium text-muted-foreground">Stop in one click</li>
+          <li class="rounded-full border border-border bg-background px-3 py-1.5 text-[13px] font-medium text-muted-foreground">A real person replies</li>
+        </ul>
+
+        <div class="mt-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-t border-border pt-4">
+          <span class="eyebrow" data-selected-label>Your price · {{ default_pack.title }}</span>
+          <span class="text-[28px] font-semibold text-forest tabular-nums" data-selected-price>{{ default_pack.price | money }}</span>
+        </div>
+        <p class="mt-2 text-[14px] text-muted-foreground" data-selected-shipping>{{ default_shipping_msg }}</p>
+      </div>
+
+      <fieldset>
+        <legend class="sr-only">Pack length</legend>
+        <div class="space-y-7 pt-8">
+          {% for product in packs %}
+            {% assign weeks = product.metafields.plainly.weeks | default: 0 %}
+            {% assign tablets = product.metafields.plainly.tablets | default: weeks %}
+            {% assign badge = product.metafields.plainly.badge %}
+            {% assign tone = product.metafields.plainly.tone | default: 'muted' %}
+            {% assign sold_out = product.available | prepend: '' %}
+            {% if product.available %}{% assign sold_out = 'false' %}{% else %}{% assign sold_out = 'true' %}{% endif %}
+            {% assign base_per_day = 1995 | divided_by: 700.0 %}
+            {% assign full_price_cents = base_per_day | times: weeks | times: 7 | round %}
+            {% assign saving_cents = full_price_cents | minus: product.price %}
+            {% assign is_default = false %}
+            {% if product.id == default_pack.id %}{% assign is_default = true %}{% endif %}
+
+            <label class="pack-row{% if is_default %} is-active{% endif %}{% unless product.available %} is-soldout{% endunless %}"
+                   data-price="{{ product.price | divided_by: 100.0 }}"
+                   data-label="{{ product.title | escape }}"
+                   data-sold-out="{{ sold_out }}"
+                   data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                   data-url="{{ product.url }}">
+              {% if badge %}
+                <span class="pack-badge tone-{{ tone }}">{{ badge }}</span>
+              {% endif %}
+              <input type="radio" name="pack" value="{{ product.id }}" {% if is_default %}checked{% endif %} {% unless product.available %}disabled{% endunless %}>
+              <span class="pack-radio"><span class="pack-radio-dot"></span></span>
+              <span class="min-w-0">
+                <span class="block text-[20px] leading-tight font-semibold sm:text-[22px]">{{ product.title }}</span>
+                <span class="block text-[15px] text-muted-foreground">
+                  {{ tablets }} tablet{% if tablets != 1 %}s{% endif %} · one for every night
+                </span>
+                <span class="block text-[15px] text-muted-foreground">
+                  <span class="font-semibold text-foreground tabular-nums">
+                    {% assign per_day = product.price | divided_by: weeks | divided_by: 7 %}
+                    {{ per_day | money }}
+                  </span> per day
+                </span>
+                {% if saving_cents > 0 and product.available %}
+                  <span class="mt-2 inline-flex w-fit rounded-full bg-mint px-3 py-1 text-[13px] font-semibold text-forest tabular-nums">Save {{ saving_cents | money }}</span>
+                {% endif %}
+              </span>
+              <span class="ml-auto flex flex-col items-end leading-tight">
+                <span class="text-[24px] font-semibold tabular-nums sm:text-[28px]">
+                  {% if product.available %}{{ product.price | money }}{% else %}Sold out{% endif %}
+                </span>
+                {% if saving_cents > 0 and product.available %}
+                  <s class="text-[17px] text-muted-foreground tabular-nums">{{ full_price_cents | money }}</s>
+                {% endif %}
+              </span>
+            </label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <p class="text-center text-[14px] text-muted-foreground">
+        Crossed out price is the same number of weeks bought one week at a time. That is the only comparison we make.
+      </p>
+      <p class="flex flex-wrap justify-center gap-x-5 gap-y-1 text-[12px] font-semibold tracking-[0.1em] text-muted-foreground uppercase">
+        <span>Plain box</span>
+        <span>Discreet statement</span>
+        <span>Free over ${{ section.settings.free_over }}</span>
+        <span>Stop any time</span>
+      </p>
+
+      <button type="button" data-selected-cta class="btn-base btn-ink w-full">
+        Yes, start tonight for {{ default_pack.price | money }}
+      </button>
+      <p class="text-center text-[14px] text-muted-foreground">
+        Ships every 30 days. Cancel in one click. 60 nights or your money back.
+      </p>
+    </div>
+  </div>
+
+  {% comment %} Sticky buy bar at bottom {% endcomment %}
+  <div class="h-28" aria-hidden="true"></div>
+  <div data-buy-bar class="buy-bar" aria-hidden="true">
+    <div class="page-grid flex items-center justify-between gap-4 py-3">
+      <div class="min-w-0">
+        <p class="truncate text-[13px] font-bold tracking-[0.06em] text-muted-foreground uppercase">Plain box, one a day</p>
+        <p class="text-[20px] leading-tight font-semibold tabular-nums" data-buy-bar-price>{{ default_pack.price | money }}</p>
+      </div>
+      <a href="#bundle-selector" class="btn-base btn-ink shrink-0">Start tonight</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundle selector",
+  "settings": [
+    { "type": "collection", "id": "bundle_collection", "label": "Bundle collection (6 products)" },
+    { "type": "number", "id": "free_over", "label": "Free shipping over", "default": 99 },
+    { "type": "number", "id": "ship_fee", "label": "Shipping fee", "default": 7.95 }
+  ],
+  "presets": [ { "name": "Bundle selector" } ]
+}
+{% endschema %}

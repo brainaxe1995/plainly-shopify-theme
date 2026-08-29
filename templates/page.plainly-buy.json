@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "hero": { "type": "product-hero", "settings": {} },
+    "pick": { "type": "product-bundle-selector", "settings": {} },
+    "how": { "type": "product-how-it-works", "settings": { "image_alt": "Photo · hero shot · the pack" } },
+    "doormat": { "type": "product-doormat", "settings": { "image_alt": "Photo · the plain outer box, as it lands" } },
+    "refusals": { "type": "product-refusals", "settings": {} },
+    "faq": { "type": "product-faq", "settings": {} },
+    "last": { "type": "product-last-cta", "settings": {} },
+    "support": { "type": "home-support-note", "settings": {} }
+  },
+  "order": ["hero", "pick", "how", "doormat", "refusals", "faq", "last", "support"]
+}

@@ -1,0 +1,43 @@
+<section class="page-grid section-y">
+  <div class="grid gap-10 md:grid-cols-2">
+    <div>
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}" class="w-full rounded-[4px] border border-border object-cover" style="aspect-ratio: 1 / 1;" loading="lazy">
+      {% else %}
+        <div class="photo-slot" style="aspect-ratio: 1 / 1;"><span>{{ product.title }}</span></div>
+      {% endif %}
+    </div>
+    <div>
+      <p class="eyebrow">{{ product.metafields.plainly.badge | default: 'What we send' }}</p>
+      <h1 class="heading mt-3">{{ product.title }}</h1>
+      <p class="mt-4 text-[28px] font-semibold text-forest tabular-nums">{{ product.price | money }}</p>
+
+      <div class="mt-6 space-y-4 text-muted-foreground">
+        {{ product.description }}
+      </div>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn-base btn-ink mt-8 w-full" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Add to bag &mdash; {{ product.price | money }}{% else %}Sold out{% endif %}
+        </button>
+      {% endform %}
+
+      <p class="mt-4 text-[13px] font-semibold tracking-[0.06em] text-muted-foreground uppercase">
+        Plain box · Discreet statement · 60 nights or your money back
+      </p>
+
+      <div class="rule-hard mt-8 pt-6">
+        {% assign with_note = false %}
+        {% render 'advisor-card', with_note: with_note %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% render 'guarantee' %}
+{% render 'support-note' %}
+
+{% schema %}
+{ "name": "Product main", "settings": [] }
+{% endschema %}
