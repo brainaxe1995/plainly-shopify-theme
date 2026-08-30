@@ -1,9 +1,16 @@
-/* Plainlycorn theme — vanilla JS. Sticky buy bar + bundle selector radios.
-   Uses a real <form id="pack-buy-form" action="/cart/add"> so external
-   scripts (CascadeCheckout PRIME001.js) can hook the form submit event
-   at load time — no dynamic form creation. */
+/* Plainlycorn theme — vanilla JS.
+
+   CascadeCheckout integration:
+   - Cascade PRIME001.js hooks [data-dusto-checkout] and a[href^="/checkout"]
+     via document-level click capture. It reads the Shopify cart cookie and
+     redirects to CascadeCheckout with cart+session params.
+   - Cart must already contain the item at click time — Cascade does not
+     add-to-cart itself.
+   - Flow: user clicks bundle CTA -> we POST /cart/add.js (AJAX) -> on
+     success we programmatically click the hidden [data-cascade-trigger]
+     anchor -> Cascade intercepts -> redirects to checkout.plainlycorn.com. */
 (function () {
-  // Sticky buy bar visibility on scroll
+  // Sticky buy bar visibility
   const bar = document.querySelector('[data-buy-bar]');
   if (bar) {
     const onScroll = () => {
@@ -14,7 +21,6 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Bundle selector
   const selector = document.querySelector('[data-bundle-selector]');
   if (!selector) return;
 
@@ -25,7 +31,8 @@
   const ctaEl = selector.querySelector('[data-selected-cta]');
   const barPriceEl = document.querySelector('[data-buy-bar-price]');
   const barCtaEl = document.querySelector('[data-buy-bar-cta]');
-  const variantInput = document.querySelector('[data-selected-variant-input]');
+  const variantInput = selector.querySelector('[data-selected-variant-input]');
+  const cascadeTrigger = selector.querySelector('[data-cascade-trigger]');
 
   const freeOverCents = parseInt(selector.dataset.freeOverCents || '0', 10);
   const shipFeeFormatted = selector.dataset.shipFeeFormatted || '';
@@ -45,7 +52,6 @@
     const soldOut = row.dataset.soldOut === 'true';
     const variantId = row.dataset.variantId;
 
-    // Swap the form's hidden variant id — this is what /cart/add + Cascade see
     if (variantInput && variantId) variantInput.value = variantId;
 
     if (priceEl) priceEl.textContent = priceFormatted;
@@ -73,7 +79,46 @@
     });
   });
 
-  // No custom submit handler — form submits natively via type="submit" on
-  // main CTA and via form=pack-buy-form on the sticky bar CTA. Cascade
-  // (PRIME001.js) hooks the form's submit event.
+  // 1) AJAX add current variant to Shopify cart
+  // 2) Programmatically click the Cascade-hooked anchor
+  async function buyNow(btnEl) {
+    const variantId = variantInput ? variantInput.value : null;
+    if (!variantId) return;
+    if (btnEl) {
+      btnEl.dataset._label = btnEl.textContent;
+      btnEl.textContent = 'Adding to cart…';
+      btnEl.disabled = true;
+    }
+    try {
+      const res = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: parseInt(variantId, 10), quantity: 1 })
+      });
+      if (!res.ok) throw new Error('cart/add.js ' + res.status);
+      // Cart cookie is now set on plainlycorn.com. Trigger Cascade-caught click.
+      if (cascadeTrigger) {
+        cascadeTrigger.click();
+      } else {
+        // Fallback: plain checkout redirect (Cascade also hooks a[href^="/checkout"]
+        // via its document-level click listener when THIS click is dispatched
+        // on the synthetic anchor below).
+        const a = document.createElement('a');
+        a.href = '/checkout';
+        a.setAttribute('data-dusto-checkout', '');
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    } catch (e) {
+      console.error('[plainly] add-to-cart failed', e);
+      if (btnEl) {
+        btnEl.textContent = btnEl.dataset._label || 'Try again';
+        btnEl.disabled = false;
+      }
+    }
+  }
+
+  if (ctaEl) ctaEl.addEventListener('click', () => buyNow(ctaEl));
+  if (barCtaEl) barCtaEl.addEventListener('click', () => buyNow(barCtaEl));
 })();
