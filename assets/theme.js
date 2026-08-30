@@ -1,6 +1,7 @@
 /* Plainlycorn theme — vanilla JS. Sticky buy bar + bundle selector radios.
-   Currency-agnostic: every price string comes from Liquid `| money` filter
-   via data-*-formatted attributes. No hardcoded symbols here. */
+   Uses a real <form id="pack-buy-form" action="/cart/add"> so external
+   scripts (CascadeCheckout PRIME001.js) can hook the form submit event
+   at load time — no dynamic form creation. */
 (function () {
   // Sticky buy bar visibility on scroll
   const bar = document.querySelector('[data-buy-bar]');
@@ -11,25 +12,6 @@
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-  }
-
-  // Add active pack to cart, go to checkout
-  function submitPack(variantId) {
-    if (!variantId) return;
-    const form = document.createElement('form');
-    form.action = '/cart/add';
-    form.method = 'post';
-    const idInput = document.createElement('input');
-    idInput.type = 'hidden'; idInput.name = 'id'; idInput.value = variantId;
-    const qtyInput = document.createElement('input');
-    qtyInput.type = 'hidden'; qtyInput.name = 'quantity'; qtyInput.value = '1';
-    const ret = document.createElement('input');
-    ret.type = 'hidden'; ret.name = 'return_to'; ret.value = '/checkout';
-    form.appendChild(idInput);
-    form.appendChild(qtyInput);
-    form.appendChild(ret);
-    document.body.appendChild(form);
-    form.submit();
   }
 
   // Bundle selector
@@ -43,14 +25,13 @@
   const ctaEl = selector.querySelector('[data-selected-cta]');
   const barPriceEl = document.querySelector('[data-buy-bar-price]');
   const barCtaEl = document.querySelector('[data-buy-bar-cta]');
+  const variantInput = document.querySelector('[data-selected-variant-input]');
 
   const freeOverCents = parseInt(selector.dataset.freeOverCents || '0', 10);
   const shipFeeFormatted = selector.dataset.shipFeeFormatted || '';
   const shipOverFormatted = selector.dataset.shipOverFormatted || '';
   const ctaPre = ctaEl ? (ctaEl.dataset.ctaPre || 'Yes, start tonight for') : '';
   const barCtaPre = barCtaEl ? (barCtaEl.dataset.ctaPre || 'Start tonight for') : '';
-
-  let currentVariantId = null;
 
   function setActive(row) {
     rows.forEach((r) => r.classList.remove('is-active'));
@@ -62,7 +43,10 @@
     const priceFormatted = row.dataset.priceFormatted;
     const label = row.dataset.label;
     const soldOut = row.dataset.soldOut === 'true';
-    currentVariantId = row.dataset.variantId;
+    const variantId = row.dataset.variantId;
+
+    // Swap the form's hidden variant id — this is what /cart/add + Cascade see
+    if (variantInput && variantId) variantInput.value = variantId;
 
     if (priceEl) priceEl.textContent = priceFormatted;
     if (labelEl) labelEl.textContent = 'Your price · ' + label;
@@ -89,11 +73,7 @@
     });
   });
 
-  // Initialise currentVariantId from default-active row
-  const defaultActive = selector.querySelector('.pack-row.is-active');
-  if (defaultActive) currentVariantId = defaultActive.dataset.variantId;
-
-  if (ctaEl) ctaEl.addEventListener('click', () => submitPack(currentVariantId));
-  // Sticky bar delegates to main CTA click (single source of truth)
-  if (barCtaEl) barCtaEl.addEventListener('click', () => { if (ctaEl && !ctaEl.disabled) ctaEl.click(); });
+  // No custom submit handler — form submits natively via type="submit" on
+  // main CTA and via form=pack-buy-form on the sticky bar CTA. Cascade
+  // (PRIME001.js) hooks the form's submit event.
 })();

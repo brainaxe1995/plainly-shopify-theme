@@ -130,9 +130,14 @@
         <span>Stop any time</span>
       </p>
 
-      <button type="button" data-selected-cta class="btn-base btn-ink w-full" data-cta-pre="Yes, start tonight for">
-        Yes, start tonight for {{ default_pack.price | money }}
-      </button>
+      <form action="/cart/add" method="post" id="pack-buy-form" data-cascade-buy>
+        <input type="hidden" name="id" value="{{ default_pack.selected_or_first_available_variant.id }}" data-selected-variant-input>
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" data-selected-cta class="btn-base btn-ink w-full" data-cta-pre="Yes, start tonight for">
+          Yes, start tonight for {{ default_pack.price | money }}
+        </button>
+      </form>
       <p class="text-center text-[14px] text-muted-foreground">
         Ships every 30 days. Cancel in one click. 60 nights or your money back.
       </p>
@@ -147,7 +152,7 @@
         <p class="truncate text-[13px] font-bold tracking-[0.06em] text-muted-foreground uppercase">Plain box, one a day</p>
         <p class="text-[20px] leading-tight font-semibold tabular-nums" data-buy-bar-price>{{ default_pack.price | money }}</p>
       </div>
-      <button type="button" data-buy-bar-cta class="btn-base btn-ink shrink-0" data-cta-pre="Start tonight for">
+      <button type="submit" form="pack-buy-form" data-buy-bar-cta class="btn-base btn-ink shrink-0" data-cta-pre="Start tonight for">
         Start tonight for {{ default_pack.price | money }}
       </button>
     </div>
